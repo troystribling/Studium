@@ -1,0 +1,7 @@
+*.xcuserstate
+*.xcscheme
+*.xcbkptlist
+Studium.xcodeproj/xcuserdata/*
+Studium.xcodeproj/project.xcworkspace/xcuserdata/*
+Studium.xcodeproj/project.xcworkspace/xcshareddata/*
+.DS_Store
