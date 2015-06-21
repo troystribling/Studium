@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051E15B01B374112001D2E80 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E15AF1B374112001D2E80 /* Logger.swift */; };
 		059AE8CC1B37360900D5C16A /* Studium.h in Headers */ = {isa = PBXBuildFile; fileRef = 059AE8CB1B37360900D5C16A /* Studium.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		059AE8D21B37360900D5C16A /* Studium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AE8C61B37360900D5C16A /* Studium.framework */; };
 		059AE8D91B37360900D5C16A /* StudiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059AE8D81B37360900D5C16A /* StudiumTests.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		051E15AF1B374112001D2E80 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		059AE8C61B37360900D5C16A /* Studium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Studium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		059AE8CA1B37360900D5C16A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		059AE8CB1B37360900D5C16A /* Studium.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Studium.h; sourceTree = "<group>"; };
@@ -31,7 +33,7 @@
 		059AE8D71B37360900D5C16A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		059AE8D81B37360900D5C16A /* StudiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudiumTests.swift; sourceTree = "<group>"; };
 		059AE8E21B37362500D5C16A /* ArrayTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTools.swift; sourceTree = "<group>"; };
-		059AE8E41B37366700D5C16A /* Studium.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Studium.playground; sourceTree = "<group>"; };
+		059AE8E41B37366700D5C16A /* Sort.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Sort.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +76,11 @@
 		059AE8C81B37360900D5C16A /* Studium */ = {
 			isa = PBXGroup;
 			children = (
-				059AE8E21B37362500D5C16A /* ArrayTools.swift */,
 				059AE8CB1B37360900D5C16A /* Studium.h */,
+				059AE8E41B37366700D5C16A /* Sort.playground */,
+				059AE8E21B37362500D5C16A /* ArrayTools.swift */,
+				051E15AF1B374112001D2E80 /* Logger.swift */,
 				059AE8C91B37360900D5C16A /* Supporting Files */,
-				059AE8E41B37366700D5C16A /* Studium.playground */,
 			);
 			path = Studium;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				059AE8E31B37362500D5C16A /* ArrayTools.swift in Sources */,
+				051E15B01B374112001D2E80 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +340,7 @@
 				INFOPLIST_FILE = Studium/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				"OTHER_SWIFT_FLAGS[arch=*]" = "-D DEBUG";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -405,6 +410,7 @@
 				059AE8DE1B37360900D5C16A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		059AE8DF1B37360900D5C16A /* Build configuration list for PBXNativeTarget "StudiumTests" */ = {
 			isa = XCConfigurationList;
@@ -413,6 +419,7 @@
 				059AE8E11B37360900D5C16A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
