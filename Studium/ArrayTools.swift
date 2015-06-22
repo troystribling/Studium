@@ -13,7 +13,11 @@ public struct ArrayTools {
     public static func fillUpTo(count:UInt32) -> [UInt32] {
         return (0..<count).map{$0}
     }
-    
+
+    public static func fillReversedUpTo(count:UInt32) -> [UInt32] {
+        return (0..<count).map{count - 1 - $0}
+    }
+
     public static func fillRandom(count:UInt32, upToValue:UInt32?=nil) -> [UInt32] {
         if let upToValue = upToValue {
             return (0..<count).map{_ in

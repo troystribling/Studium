@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		051E15B01B374112001D2E80 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E15AF1B374112001D2E80 /* Logger.swift */; };
+		056AC7D51B3788B200251679 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC7D41B3788B200251679 /* Sort.swift */; };
 		059AE8CC1B37360900D5C16A /* Studium.h in Headers */ = {isa = PBXBuildFile; fileRef = 059AE8CB1B37360900D5C16A /* Studium.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		059AE8D21B37360900D5C16A /* Studium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AE8C61B37360900D5C16A /* Studium.framework */; };
 		059AE8D91B37360900D5C16A /* StudiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059AE8D81B37360900D5C16A /* StudiumTests.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		051E15AF1B374112001D2E80 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		056AC7D41B3788B200251679 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		059AE8C61B37360900D5C16A /* Studium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Studium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		059AE8CA1B37360900D5C16A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		059AE8CB1B37360900D5C16A /* Studium.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Studium.h; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 				059AE8E41B37366700D5C16A /* Sort.playground */,
 				059AE8E21B37362500D5C16A /* ArrayTools.swift */,
 				051E15AF1B374112001D2E80 /* Logger.swift */,
+				056AC7D41B3788B200251679 /* Sort.swift */,
 				059AE8C91B37360900D5C16A /* Supporting Files */,
 			);
 			path = Studium;
@@ -219,6 +222,7 @@
 			files = (
 				059AE8E31B37362500D5C16A /* ArrayTools.swift in Sources */,
 				051E15B01B374112001D2E80 /* Logger.swift in Sources */,
+				056AC7D51B3788B200251679 /* Sort.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
