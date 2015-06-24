@@ -1,7 +1,10 @@
 import UIKit
 import Studium
 
-var vals = ArrayTools.fillRandom(10, upToValue:3)
+var vals = ArrayTools.fillUpTo(20)
+ArrayTools.shuffle(&vals)
 println(vals)
-Sort.Insertion.sort(&vals)
+Sort.Shell.sort(&vals)
+ArrayTools.sorted(vals)
 println(vals)
+
