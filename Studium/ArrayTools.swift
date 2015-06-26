@@ -46,7 +46,7 @@ public struct ArrayTools {
     public static func sorted<T:Comparable>(vals:[T]) -> Bool {
         var status = true
         for i in (1..<vals.count) {
-            if vals[i-1] >= vals[i] {
+            if vals[i-1] > vals[i] {
                 status = false
                 break
             }

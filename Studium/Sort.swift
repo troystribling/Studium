@@ -73,4 +73,51 @@ public struct Sort {
         }
     }
     
+    // implementaion of merge sort
+    public struct MergeTopDown {
+        
+        public static func sort<T:Comparable>(inout vals:[T]) {
+            var tmp = vals
+            self.sort(&vals, tmp:&tmp, lo:0, hi:vals.count-1)
+        }
+        
+        public static func sort<T:Comparable>(inout vals:[T], inout tmp:[T], lo:Int, hi:Int) {
+            if hi <= lo {
+                return
+            }
+            let mid = lo + (hi - lo)/2
+            self.sort(&vals, tmp: &tmp, lo:lo, hi:mid)
+            self.sort(&vals, tmp: &tmp, lo:mid+1, hi:hi)
+            self.merge(&vals, tmp:&tmp, lo:lo, mid:mid, hi:hi)
+        }
+        
+        // merge 2 sorted portions of array first is lo...mid second is mid+1...hi
+        public static func merge<T:Comparable>(inout vals:[T], inout tmp:[T], lo:Int, mid:Int, hi:Int) {
+            var i = lo
+            var j = mid + 1
+            for k in (lo...hi) {
+                tmp[k] = vals[k]
+            }
+            for k in (lo...hi) {
+                // lower array exhausted
+                if i > mid {
+                    vals[k] = tmp[j]
+                    ++j
+                // upper array exhausted
+                } else if j > hi {
+                    vals[k] = tmp[i]
+                    ++i
+                // upper array larger
+                } else if tmp[j] > tmp[i] {
+                    vals[k] = tmp[i]
+                    ++i
+                // lower array larger
+                } else {
+                    vals[k] = tmp[j]
+                    ++j
+                }
+            }
+        }
+    }
+    
 }
