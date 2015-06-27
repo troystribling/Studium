@@ -33,7 +33,7 @@ public struct Sort {
         
         public static func sort<T:Comparable>(inout vals:[T]) {
             for i in (1..<vals.count) {
-                for j in reverse(1...i) {
+                for j in (1...i).reverse() {
                     if vals[j] < vals[j-1] {
                         ArrayTools.swap(&vals, index:j, withIndex:j-1)
                     } else {
@@ -134,7 +134,7 @@ public struct Sort {
                 for var s = 1; s < n; s = 2*s {
                     // loop through 2 ajacent subarrays using index lo
                     for var lo = 0; lo < n-s; lo += 2*s {
-                        Merge.merge(&vals, tmp:&tmp, lo:lo, mid:lo+s-1, hi:minElement([lo+2*s-1, n-1]))
+                        Merge.merge(&vals, tmp:&tmp, lo:lo, mid:lo+s-1, hi:[lo+2*s-1, n-1].minElement()!)
                     }
                 }
             }
