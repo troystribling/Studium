@@ -71,53 +71,81 @@ public struct Sort {
                 }
             }
         }
+        
     }
     
-    // implementaion of merge sort
-    public struct MergeTopDown {
-        
-        public static func sort<T:Comparable>(inout vals:[T]) {
-            var tmp = vals
-            self.sort(&vals, tmp:&tmp, lo:0, hi:vals.count-1)
-        }
-        
-        public static func sort<T:Comparable>(inout vals:[T], inout tmp:[T], lo:Int, hi:Int) {
-            if hi <= lo {
-                return
-            }
-            let mid = lo + (hi - lo)/2
-            self.sort(&vals, tmp: &tmp, lo:lo, hi:mid)
-            self.sort(&vals, tmp: &tmp, lo:mid+1, hi:hi)
-            self.merge(&vals, tmp:&tmp, lo:lo, mid:mid, hi:hi)
-        }
-        
+    // implementaion of merge sort algorithms
+    public struct Merge {
+
         // merge 2 sorted portions of array first is lo...mid second is mid+1...hi
         public static func merge<T:Comparable>(inout vals:[T], inout tmp:[T], lo:Int, mid:Int, hi:Int) {
+            println("lo:\(lo), mid:\(hi), hi:\(hi)")
             var i = lo
             var j = mid + 1
             for k in (lo...hi) {
                 tmp[k] = vals[k]
             }
             for k in (lo...hi) {
+                println("k:\(k), i:\(i), j:\(j)")
                 // lower array exhausted
                 if i > mid {
                     vals[k] = tmp[j]
                     ++j
-                // upper array exhausted
+                    // upper array exhausted
                 } else if j > hi {
                     vals[k] = tmp[i]
                     ++i
-                // upper array larger
+                    // upper array larger
                 } else if tmp[j] > tmp[i] {
                     vals[k] = tmp[i]
                     ++i
-                // lower array larger
+                    // lower array larger
                 } else {
                     vals[k] = tmp[j]
                     ++j
                 }
             }
         }
+
+        // recursive topdown merge sort implementaion
+        public struct TopDown {
+            
+            public static func sort<T:Comparable>(inout vals:[T]) {
+                var tmp = vals
+                self.sort(&vals, tmp:&tmp, lo:0, hi:vals.count-1)
+            }
+            
+            public static func sort<T:Comparable>(inout vals:[T], inout tmp:[T], lo:Int, hi:Int) {
+                if hi <= lo {
+                    return
+                }
+                let mid = lo + (hi - lo)/2
+                self.sort(&vals, tmp: &tmp, lo:lo, hi:mid)
+                self.sort(&vals, tmp: &tmp, lo:mid+1, hi:hi)
+                Merge.merge(&vals, tmp:&tmp, lo:lo, mid:mid, hi:hi)
+                println(vals)
+            }
+        }
+        
+        // bottom up merge sort implementation
+        public struct BottomUp {
+            
+            public static func sort<T:Comparable>(inout vals:[T]) {
+                println(vals)
+                let n = vals.count
+                var tmp = vals
+                // loop through subarrays with size s
+                for var s = 1; s < n; s = 2*s {
+                    // loop through 2 ajacent subarrays using index lo
+                    for var lo = 0; lo < n-s; lo += 2*s {
+                        println("s:\(s), lo:\(lo)")
+                        Merge.merge(&vals, tmp:&tmp, lo:lo, mid:lo+s-1, hi:minElement([lo+2*s-1, n-1]))
+                    }
+                    println(vals)
+                }
+            }
+        }
+        
     }
     
 }
