@@ -1,8 +1,8 @@
 import UIKit
 import Studium
 
-var vals = ArrayTools.fillReversedUpTo(7)
+var vals = ArrayTools.fillRandom(20, upToValue:5)
 print(vals)
-Sort.Merge.TopDown.sort(&vals)
+Sort.Quick.sort(&vals)
 print(vals)
-
+print(ArrayTools.sorted(vals))

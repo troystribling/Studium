@@ -89,15 +89,15 @@ public struct Sort {
                 if i > mid {
                     vals[k] = tmp[j]
                     ++j
-                    // upper array exhausted
+                // upper array exhausted
                 } else if j > hi {
                     vals[k] = tmp[i]
                     ++i
-                    // upper array larger
+                // upper array larger
                 } else if tmp[j] > tmp[i] {
                     vals[k] = tmp[i]
                     ++i
-                    // lower array larger
+                // lower array larger
                 } else {
                     vals[k] = tmp[j]
                     ++j
@@ -114,7 +114,7 @@ public struct Sort {
             }
             
             public static func sort<T:Comparable>(inout vals:[T], inout tmp:[T], lo:Int, hi:Int) {
-                if hi <= lo {
+                guard hi > lo else {
                     return
                 }
                 let mid = lo + (hi - lo)/2
@@ -140,6 +140,53 @@ public struct Sort {
             }
         }
         
+    }
+    
+    // implementaion of quick sort
+    public struct Quick {
+        
+        public static func sort<T:Comparable>(inout vals:[T]) {
+            ArrayTools.shuffle(&vals)
+            self.sort(&vals, lo:0, hi:vals.count-1)
+        }
+        
+        public static func sort<T:Comparable>(inout vals:[T], lo:Int, hi:Int) {
+            guard hi > lo else {
+                return
+            }
+            let j = self.partition(&vals, lo:lo, hi:hi)
+            self.sort(&vals, lo:lo, hi:j-1)
+            self.sort(&vals, lo:j+1, hi:hi)
+        }
+        
+        public static func partition<T:Comparable>(inout vals:[T], lo:Int, hi:Int) -> Int {
+            var i = lo
+            var j = hi+1
+            let pivot = vals[lo]
+            while(true) {
+                // find i where vals[i] are partitioned
+                while vals[++i] < pivot {
+                    if i == hi {
+                        break
+                    }
+                }
+                // find j vals[j] are partitioned
+                while vals[--j] > pivot {
+                    if j == lo {
+                        break
+                    }
+                }
+                // traversed array
+                if i >= j {
+                    break
+                } else {
+                    ArrayTools.swap(&vals, index:i, withIndex:j)
+                }
+            }
+            // put pivot at lo in its sorted position
+            ArrayTools.swap(&vals, index:lo, withIndex:j)
+            return j
+        }
     }
     
 }
