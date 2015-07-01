@@ -77,10 +77,9 @@ public struct Sort {
     // implementaion of merge sort algorithms
     public struct Merge {
 
-        // merge 2 sorted portions of array first is lo...mid second is mid+1...hi
+        // merge 2 sorted portions of array  vals[lo...mid] and vals[mid+1...hi]
         public static func merge<T:Comparable>(inout vals:[T], inout tmp:[T], lo:Int, mid:Int, hi:Int) {
-            var i = lo
-            var j = mid + 1
+            var i = lo, j = mid + 1
             for k in (lo...hi) {
                 tmp[k] = vals[k]
             }
@@ -159,9 +158,9 @@ public struct Sort {
             self.sort(&vals, lo:j+1, hi:hi)
         }
         
+        // inplace partial sort for vals[lo...j-1] < vals[j] < vals[j+1...hi]
         public static func partition<T:Comparable>(inout vals:[T], lo:Int, hi:Int) -> Int {
-            var i = lo
-            var j = hi+1
+            var i = lo, j = hi+1
             let pivot = vals[lo]
             while(true) {
                 // find i where vals[i] are partitioned
@@ -186,6 +185,36 @@ public struct Sort {
             // put pivot at lo in its sorted position
             ArrayTools.swap(&vals, index:lo, withIndex:j)
             return j
+        }
+    }
+    
+    // implementaion of quick sort with 3 way partitioning
+    public struct Quick3way {
+        
+        public static func sort<T:Comparable>(inout vals:[T]) {
+            self.sort(&vals, lo:0, hi:vals.count-1)
+        }
+        
+        // inplace partial sort vals[lo...lt-1] < vals[lt...gt] < vals[gt+1...hi]
+        public static func sort<T:Comparable>(inout vals:[T], lo:Int, hi:Int) {
+            guard hi > lo else {
+                return
+            }
+            var lt = lo, i = lo+1, gt = hi
+            let pivot = vals[lo]
+            while i <= gt {
+                if vals[i] < pivot {
+                    ArrayTools.swap(&vals, index:lt, withIndex:i)
+                    ++lt; ++i
+                } else if vals[i] > pivot {
+                    ArrayTools.swap(&vals, index:i, withIndex:gt)
+                    --gt
+                } else {
+                    ++i
+                }
+            }
+            self.sort(&vals, lo:lo, hi:lt-1)
+            self.sort(&vals, lo:gt+1, hi:hi)
         }
     }
     
