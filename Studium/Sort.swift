@@ -218,4 +218,11 @@ public struct Sort {
         }
     }
     
+    // implementaion of heap sort
+    public struct Heap {
+        
+        
+        
+    }
+    
 }

@@ -6,3 +6,8 @@ print(vals)
 Sort.Quick3way.sort(&vals)
 print(vals)
 print(ArrayTools.sorted(vals))
+
+func test(var x:Int) -> Int {
+    ++x
+    return x
+}
