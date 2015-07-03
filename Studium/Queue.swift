@@ -9,6 +9,14 @@
 import Foundation
 
 // binary heap implementaion of priority queue
+// binary heap node numbering
+// k = parent node number
+// 2*k = left child node number
+// 2*k + 1 = right child node number
+// j = child node number
+// j/2 = parent node number
+// val[k] >= val2*k] && val[k] >= val[2k+1]
+// vals[0] is largest value
 public class MaxPriorityQ<T:Comparable> {
     
     private var vals    = [T]()
@@ -48,9 +56,11 @@ public class MaxPriorityQ<T:Comparable> {
         // k=child node, j=parent node
         while k > 1 {
             let j = k/2
-            if self.vals[self.toIndex(j)] < self.vals[self.toIndex(k)] {
+            // convert to node ids to array index
+            let ji = j-1, ki = k-1
+            if self.vals[ji] < self.vals[ki] {
                 // child is greater swim higher
-                ArrayTools.swap(&self.vals, index:self.toIndex(j), withIndex:self.toIndex(k))
+                ArrayTools.swap(&self.vals, index:ji, withIndex:ki)
                 k = j
             } else {
                 // child <= parent heap order obtained
@@ -64,13 +74,15 @@ public class MaxPriorityQ<T:Comparable> {
         // k=parent node, j = child node
         while 2*k < self.n {
             var j = 2*k
+            // convert to node ids to array index
+            var ji = j-1, ki = k-1
             // compare to largest child if two are present. if j > self.n there is only one child
-            if (j < self.n) && self.vals[self.toIndex(j)] < vals[self.toIndex(j+1)] {
-                ++j
+            if (j < self.n) && self.vals[ji] < self.vals[ji+1] {
+                ++j; ++ji
             }
-            if self.vals[k] < self.vals[j] {
+            if self.vals[ki] < self.vals[ji] {
                 // parent is less than child sink lower
-                ArrayTools.swap(&self.vals, index:self.toIndex(k), withIndex:self.toIndex(j))
+                ArrayTools.swap(&self.vals, index:ki, withIndex:ji)
                 k=j
             } else {
                 // parent is >= child heap order obtained
@@ -79,9 +91,5 @@ public class MaxPriorityQ<T:Comparable> {
         }
     }
     
-    // map node number to array index
-    public func toIndex(k:Int) -> Int {
-        return k - 1
-    }
 }
     

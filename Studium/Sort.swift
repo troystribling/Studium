@@ -219,9 +219,55 @@ public struct Sort {
     }
     
     // implementaion of heap sort
+    // binary heap array storage
+    // k = paranet node id
+    // 2*k = left child node id
+    // 2*k+1 = right child node id
+    // j = child node id
+    // j/2 = parent node id
+    // heap sorted is defined by
+    // vals[k] >= vals[2*k] && vals[k] >= vals[2*k+1]
+    // vals[0] is largest value
     public struct Heap {
         
+        public static func sort<T:Comparable>(inout vals:[T]) {
+            var n = vals.count
+            // put array in heap order largest value will be root
+            //
+            for k in (1...n/2).reverse() {
+                self.sink(&vals, k:k, n:n)
+            }
+            while n > 1 {
+                // sort array by by moving root to to sorted position
+                ArrayTools.swap(&vals, index:0, withIndex:n-1)
+                --n
+                // put remainder of array in heap order once again
+                self.sink(&vals, k:1, n:n)
+            }
+        }
         
+        // lower node in tress untill heap ordered
+        public static func sink<T:Comparable>(inout vals:[T], var k:Int, n:Int) {
+            // k=parent node, j = child node
+            while 2*k <= n {
+                // left child node
+                var j = 2*k
+                // convert to node ids to array index
+                var ji = j-1, ki = k-1
+                // compare to largest child if two are present. if j > n there is only one child
+                if (j < n) && vals[ji] < vals[ji+1] {
+                    ++j; ++ji
+                }
+                if vals[ki] < vals[ji] {
+                    // parent is less than child sink lower
+                    ArrayTools.swap(&vals, index:ki, withIndex:ji)
+                    k=j
+                } else {
+                    // parent is >= child heap order obtained
+                    break
+                }
+            }
+        }
         
     }
     
