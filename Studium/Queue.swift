@@ -72,7 +72,7 @@ public class MaxPriorityQ<T:Comparable> {
     // lower node in tress untill heap ordered
     public func sink(var k:Int) {
         // k=parent node, j = child node
-        while 2*k < self.n {
+        while 2*k <= self.n {
             var j = 2*k
             // convert to node ids to array index
             var ji = j-1, ki = k-1
@@ -89,6 +89,31 @@ public class MaxPriorityQ<T:Comparable> {
                 break
             }
         }
+    }
+    
+}
+
+public class Queue<T> {
+    
+    private var vals = [T]()
+    
+    public var isEmpty : Bool {
+        return self.vals.count == 0
+    }
+    
+    public var size : Int {
+        return self.vals.count
+    }
+
+    public init() {
+    }
+    
+    public func enqueue(val:T) {
+        self.vals.append(val)
+    }
+    
+    public func dequeue() -> T? {
+        return self.isEmpty ? nil : self.vals.removeAtIndex(0)
     }
     
 }

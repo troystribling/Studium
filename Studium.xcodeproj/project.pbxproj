@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		051E15B01B374112001D2E80 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E15AF1B374112001D2E80 /* Logger.swift */; };
+		054CB4391B484E6300953832 /* QueueTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CB4381B484E6200953832 /* QueueTools.swift */; };
+		054CB43B1B484F4800953832 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CB43A1B484F4800953832 /* Stack.swift */; };
 		056AC7D51B3788B200251679 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC7D41B3788B200251679 /* Sort.swift */; };
 		0592DD8A1B4433EF006AA0A5 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592DD891B4433EF006AA0A5 /* Queue.swift */; };
 		059AE8CC1B37360900D5C16A /* Studium.h in Headers */ = {isa = PBXBuildFile; fileRef = 059AE8CB1B37360900D5C16A /* Studium.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -28,6 +30,8 @@
 
 /* Begin PBXFileReference section */
 		051E15AF1B374112001D2E80 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		054CB4381B484E6200953832 /* QueueTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTools.swift; sourceTree = "<group>"; };
+		054CB43A1B484F4800953832 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		056AC7D41B3788B200251679 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		0592DD891B4433EF006AA0A5 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		059AE8C61B37360900D5C16A /* Studium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Studium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -83,8 +87,10 @@
 				059AE8E21B37362500D5C16A /* ArrayTools.swift */,
 				051E15AF1B374112001D2E80 /* Logger.swift */,
 				0592DD891B4433EF006AA0A5 /* Queue.swift */,
+				054CB4381B484E6200953832 /* QueueTools.swift */,
 				059AE8E41B37366700D5C16A /* Sort.playground */,
 				056AC7D41B3788B200251679 /* Sort.swift */,
+				054CB43A1B484F4800953832 /* Stack.swift */,
 				059AE8CB1B37360900D5C16A /* Studium.h */,
 				059AE8C91B37360900D5C16A /* Supporting Files */,
 			);
@@ -227,6 +233,8 @@
 				051E15B01B374112001D2E80 /* Logger.swift in Sources */,
 				056AC7D51B3788B200251679 /* Sort.swift in Sources */,
 				0592DD8A1B4433EF006AA0A5 /* Queue.swift in Sources */,
+				054CB43B1B484F4800953832 /* Stack.swift in Sources */,
+				054CB4391B484E6300953832 /* QueueTools.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
