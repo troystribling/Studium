@@ -10,12 +10,16 @@
 		051E15B01B374112001D2E80 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E15AF1B374112001D2E80 /* Logger.swift */; };
 		054CB4391B484E6300953832 /* QueueTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CB4381B484E6200953832 /* QueueTools.swift */; };
 		054CB43B1B484F4800953832 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CB43A1B484F4800953832 /* Stack.swift */; };
+		054CB4421B486C0600953832 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 054CB4411B486C0600953832 /* Data.swift */; };
 		056AC7D51B3788B200251679 /* Sort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056AC7D41B3788B200251679 /* Sort.swift */; };
 		0592DD8A1B4433EF006AA0A5 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0592DD891B4433EF006AA0A5 /* Queue.swift */; };
 		059AE8CC1B37360900D5C16A /* Studium.h in Headers */ = {isa = PBXBuildFile; fileRef = 059AE8CB1B37360900D5C16A /* Studium.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		059AE8D21B37360900D5C16A /* Studium.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 059AE8C61B37360900D5C16A /* Studium.framework */; };
 		059AE8D91B37360900D5C16A /* StudiumTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059AE8D81B37360900D5C16A /* StudiumTests.swift */; };
 		059AE8E31B37362500D5C16A /* ArrayTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 059AE8E21B37362500D5C16A /* ArrayTools.swift */; };
+		05E8CC7D1B48A636008EBA32 /* dickens.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05E8CC7A1B48A636008EBA32 /* dickens.txt */; };
+		05E8CC7E1B48A636008EBA32 /* magna-carta.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05E8CC7B1B48A636008EBA32 /* magna-carta.txt */; };
+		05E8CC7F1B48A636008EBA32 /* tinyBatch.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05E8CC7C1B48A636008EBA32 /* tinyBatch.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,8 @@
 		051E15AF1B374112001D2E80 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		054CB4381B484E6200953832 /* QueueTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTools.swift; sourceTree = "<group>"; };
 		054CB43A1B484F4800953832 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		054CB4411B486C0600953832 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		054CB4501B4870A900953832 /* Queue.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Queue.playground; sourceTree = "<group>"; };
 		056AC7D41B3788B200251679 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		0592DD891B4433EF006AA0A5 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		059AE8C61B37360900D5C16A /* Studium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Studium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +48,9 @@
 		059AE8D81B37360900D5C16A /* StudiumTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudiumTests.swift; sourceTree = "<group>"; };
 		059AE8E21B37362500D5C16A /* ArrayTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrayTools.swift; sourceTree = "<group>"; };
 		059AE8E41B37366700D5C16A /* Sort.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Sort.playground; sourceTree = "<group>"; };
+		05E8CC7A1B48A636008EBA32 /* dickens.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dickens.txt; sourceTree = "<group>"; };
+		05E8CC7B1B48A636008EBA32 /* magna-carta.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "magna-carta.txt"; sourceTree = "<group>"; };
+		05E8CC7C1B48A636008EBA32 /* tinyBatch.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tinyBatch.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,14 +93,17 @@
 		059AE8C81B37360900D5C16A /* Studium */ = {
 			isa = PBXGroup;
 			children = (
+				05E8CC791B48A636008EBA32 /* Data */,
+				059AE8CB1B37360900D5C16A /* Studium.h */,
+				054CB4501B4870A900953832 /* Queue.playground */,
+				059AE8E41B37366700D5C16A /* Sort.playground */,
 				059AE8E21B37362500D5C16A /* ArrayTools.swift */,
+				054CB4411B486C0600953832 /* Data.swift */,
 				051E15AF1B374112001D2E80 /* Logger.swift */,
 				0592DD891B4433EF006AA0A5 /* Queue.swift */,
 				054CB4381B484E6200953832 /* QueueTools.swift */,
-				059AE8E41B37366700D5C16A /* Sort.playground */,
 				056AC7D41B3788B200251679 /* Sort.swift */,
 				054CB43A1B484F4800953832 /* Stack.swift */,
-				059AE8CB1B37360900D5C16A /* Studium.h */,
 				059AE8C91B37360900D5C16A /* Supporting Files */,
 			);
 			path = Studium;
@@ -120,6 +132,16 @@
 				059AE8D71B37360900D5C16A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		05E8CC791B48A636008EBA32 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				05E8CC7A1B48A636008EBA32 /* dickens.txt */,
+				05E8CC7B1B48A636008EBA32 /* magna-carta.txt */,
+				05E8CC7C1B48A636008EBA32 /* tinyBatch.txt */,
+			);
+			path = Data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -212,6 +234,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05E8CC7F1B48A636008EBA32 /* tinyBatch.txt in Resources */,
+				05E8CC7D1B48A636008EBA32 /* dickens.txt in Resources */,
+				05E8CC7E1B48A636008EBA32 /* magna-carta.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				054CB4421B486C0600953832 /* Data.swift in Sources */,
 				059AE8E31B37362500D5C16A /* ArrayTools.swift in Sources */,
 				051E15B01B374112001D2E80 /* Logger.swift in Sources */,
 				056AC7D51B3788B200251679 /* Sort.swift in Sources */,

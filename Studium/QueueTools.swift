@@ -7,3 +7,15 @@
 //
 
 import Foundation
+
+public struct QueueTools {
+    
+    public struct PQClient {
+        
+//        public static func topVals<T>() {
+//            
+//        }
+        
+    }
+    
+}

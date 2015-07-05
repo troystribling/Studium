@@ -25,6 +25,14 @@ public class MaxPriorityQ<T:Comparable> {
     public init() {
     }
     
+    public init(vals:[T]) {
+        self.vals = vals
+        self.n = self.vals.count
+        for k in (1...self.n/2).reverse() {
+            self.sink(k)
+        }
+    }
+    
     public var isEmpty : Bool {
         return self.n == 0
     }
