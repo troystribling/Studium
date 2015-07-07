@@ -8,14 +8,15 @@
 
 import Foundation
 
-public struct QueueTools {
+public struct PQClient<T where T:Comparable, T:Loadable > {
     
-    public struct PQClient {
-        
-//        public static func topVals<T>() {
-//            
-//        }
-        
+    public static func topVals(file:String, nVals:Int) {
+        let pq = MaxPriorityQ<T>()
+        for item in T.load(file) {
+            pq.insert(item)
+            if pq.size > nVals {
+            }
+        }
     }
     
 }

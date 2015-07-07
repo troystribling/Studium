@@ -6,3 +6,5 @@ import XCPlayground
 
 let transactionFile = XCPSharedDataDirectoryPath + "/tinyBatch.txt"
 let vals = Data.Transaction.load(transactionFile)
+vals[1] > vals[0]
+

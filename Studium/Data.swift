@@ -8,11 +8,21 @@
 
 import Foundation
 
+public protocol Loadable {
+    static func load(file:String) -> [Self]
+}
+
 public struct Data {
     
-    public class Transaction : Comparable {
+    enum TransactionError : ErrorType {
+        case ParseError
+    }
+    
+    public final class Transaction : Comparable, Loadable {
         
-        let who:String, when:NSDate, amount:Float
+        let who:String!
+        let when:NSDate!
+        let amount:Float!
         
         public class func load(file:String) -> [Transaction] {
             let dateFormatter = NSDateFormatter()
@@ -46,25 +56,6 @@ public struct Data {
             self.when = when
         }
         
-//        public convenience init?(row:String) {
-//            let dateFormatter = NSDateFormatter()
-//            dateFormatter.dateFormat = "MM/dd/yyyy"
-//            let mutableRow = NSMutableString()
-//            mutableRow.setString(row)
-//            do {
-//                let regex = try NSRegularExpression(pattern:"\\s+", options:[])
-//                regex.replaceMatchesInString(mutableRow, options:[], range:NSMakeRange(0, mutableRow.length-1), withTemplate:",")
-//                let items = split(String(row).characters){$0==","}.map(String.init)
-//                if items.count == 3 {
-//                    if let when = dateFormatter.dateFromString(items[1]), amount = Float(items[2]) {
-//                        self.init(who:items[0], when:when, amount:amount)
-//                    }
-//                }
-//            } catch {
-//                return nil
-//            }
-//
-//        }
     }
     
 }
