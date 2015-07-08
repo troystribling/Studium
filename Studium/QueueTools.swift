@@ -11,12 +11,20 @@ import Foundation
 public struct PQClient<T where T:Comparable, T:Loadable > {
     
     public static func topVals(file:String, nVals:Int) {
-        let pq = MaxPriorityQ<T>()
+        let pq = MinPriorityQ<T>()
         for item in T.load(file) {
             pq.insert(item)
             if pq.size > nVals {
+                pq.delMin()
             }
         }
+        let minvals = Stack<T>()
+        while(!pq.isEmpty) {
+            if let minVal = pq.delMin() {
+                minvals.push(minVal)
+            }
+        }
+        
     }
     
 }

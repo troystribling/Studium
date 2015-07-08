@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Priority Queue
 // binary heap implementaion of priority queue
 // binary heap node numbering
 // k = parent node number
@@ -15,14 +16,19 @@ import Foundation
 // 2*k + 1 = right child node number
 // j = child node number
 // j/2 = parent node number
-// val[k] >= val2*k] && val[k] >= val[2k+1]
-// vals[0] is largest value
-public class MaxPriorityQ<T:Comparable> {
+// compare(val[k], rks:val2*k]) && compare(val[k], val[2k+1])
+// vals[0] compares successfully with all children
+public class PriorityQ<T:Comparable> {
     
     private var vals    = [T]()
     private var n : Int = 0
     
     public init() {
+    }
+    
+    // compare
+    func compare(lhs:T, rhs:T) -> Bool {
+        return lhs < rhs
     }
     
     public init(vals:[T]) {
@@ -47,7 +53,7 @@ public class MaxPriorityQ<T:Comparable> {
         self.swim(self.n)
     }
     
-    public func delMax() -> T? {
+    public func delRoot() -> T? {
         if let maxVal = self.vals.first {
             --self.n
             ArrayTools.swap(&self.vals, index:0, withIndex:self.n)
@@ -66,12 +72,12 @@ public class MaxPriorityQ<T:Comparable> {
             let j = k/2
             // convert to node ids to array index
             let ji = j-1, ki = k-1
-            if self.vals[ji] < self.vals[ki] {
-                // child is greater swim higher
+            if self.compare(self.vals[ji], rhs:self.vals[ki]) {
+                // child is not heap ordered swim higher
                 ArrayTools.swap(&self.vals, index:ji, withIndex:ki)
                 k = j
             } else {
-                // child <= parent heap order obtained
+                // child is heap order obtained
                 break
             }
         }
@@ -84,21 +90,73 @@ public class MaxPriorityQ<T:Comparable> {
             var j = 2*k
             // convert to node ids to array index
             var ji = j-1, ki = k-1
-            // compare to largest child if two are present. if j > self.n there is only one child
-            if (j < self.n) && self.vals[ji] < self.vals[ji+1] {
+            // compare to children if two are present. if j > self.n there is only one child
+            if (j < self.n) && self.compare(self.vals[ji], rhs:self.vals[ji+1]) {
                 ++j; ++ji
             }
-            if self.vals[ki] < self.vals[ji] {
-                // parent is less than child sink lower
+            if self.compare(self.vals[ki], rhs:self.vals[ji]) {
+                // parent is not heap ordered sink lower
                 ArrayTools.swap(&self.vals, index:ki, withIndex:ji)
                 k=j
             } else {
-                // parent is >= child heap order obtained
+                // parent is heap order obtained
                 break
             }
         }
     }
     
+}
+
+// Minimum Priority Queue
+// binary heap implementaion of priority queue
+// binary heap node numbering
+// k = parent node number
+// 2*k = left child node number
+// 2*k + 1 = right child node number
+// j = child node number
+// j/2 = parent node number
+// val[k] <= val2*k] && val[k] <= val[2k+1]
+// vals[0] is smalles value
+public class MinPriorityQ<T:Comparable> : PriorityQ<T> {
+    
+    public override init() {
+        super.init()
+    }
+    
+    override func compare(lhs:T, rhs:T) -> Bool {
+        return lhs > rhs
+    }
+    
+    public func delMin() -> T? {
+        return self.delRoot()
+    }
+    
+}
+
+// Maximum Priority Queue
+// binary heap implementaion of priority queue
+// binary heap node numbering
+// k = parent node number
+// 2*k = left child node number
+// 2*k + 1 = right child node number
+// j = child node number
+// j/2 = parent node number
+// val[k] >= val2*k] && val[k] >= val[2k+1]
+// vals[0] is largest value
+public class MaxPriorityQ<T:Comparable> : PriorityQ<T> {
+    
+    public override init() {
+        super.init()
+    }
+    
+    override func compare(lhs:T, rhs:T) -> Bool {
+        return lhs < rhs
+    }
+    
+    public func delMax() -> T? {
+        return self.delRoot()
+    }
+
 }
 
 public class Queue<T> {
