@@ -18,7 +18,12 @@ import Foundation
 // j/2 = parent node number
 // compare(val[k], rks:val2*k]) && compare(val[k], val[2k+1])
 // vals[0] compares successfully with all children
-public class PriorityQ<T:Comparable> {
+protocol Compared {
+    typealias T
+    func compare(lhs:T, rhs:T)
+}
+
+public class PriorityQ<T where T:Comparable, T:Compared> {
     
     private var vals    = [T]()
     private var n : Int = 0
@@ -153,13 +158,21 @@ public class MaxPriorityQ<T:Comparable> : PriorityQ<T> {
         return lhs < rhs
     }
     
-    public func delMax() -> T? {
+    public func delMin() -> T? {
         return self.delRoot()
     }
 
 }
 
-public class Queue<T> {
+// FIFO Queue
+public struct QueueGenerator<T> : GeneratorType {
+    let queue : Queue<T>
+    public mutating func next() -> T? {
+        return self.queue.dequeue()
+    }
+}
+
+public class Queue<T> : SequenceType {
     
     private var vals = [T]()
     
@@ -182,5 +195,10 @@ public class Queue<T> {
         return self.isEmpty ? nil : self.vals.removeAtIndex(0)
     }
     
+    // SequenceType
+    public func generate() -> QueueGenerator<T> {
+        return QueueGenerator(queue:self)
+    }
+
 }
     

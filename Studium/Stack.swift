@@ -8,10 +8,18 @@
 
 import Foundation
 
-public class Stack<T> {
+
+public struct StackGenerator<T> : GeneratorType {
+    let stack : Stack<T>
+    public mutating func next() -> T? {
+        return self.stack.pop()
+    }
+}
+
+public class Stack<T> : SequenceType {
     
-    var vals = [T]()
-    
+    internal var vals = [T]()
+
     public var isEmpty : Bool {
         return self.vals.count == 0
     }
@@ -29,6 +37,11 @@ public class Stack<T> {
     
     public func pop() -> T? {
         return self.isEmpty ? nil : self.vals.removeAtIndex(self.size-1)
+    }
+    
+    // SequenceType
+    public func generate() -> StackGenerator<T> {
+        return StackGenerator(stack:self)
     }
     
 }
