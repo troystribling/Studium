@@ -8,11 +8,11 @@
 
 import Foundation
 
-public struct PQClient<T where T:Comparable, T:Loadable > {
+public struct PQClient {
     
-    public static func topVals(file:String, nVals:Int) {
+    public static func topVals<T where T:Comparable>(items:[T], nVals:Int) {
         let pq = MinPriorityQ<T>()
-        for item in T.load(file) {
+        for item in items {
             pq.insert(item)
             if pq.size > nVals {
                 pq.delMin()
@@ -24,7 +24,9 @@ public struct PQClient<T where T:Comparable, T:Loadable > {
                 minvals.push(minVal)
             }
         }
-        
+        for minVal in minvals {
+            print(minVal)
+        }
     }
     
 }

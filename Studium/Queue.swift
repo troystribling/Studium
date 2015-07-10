@@ -18,47 +18,36 @@ import Foundation
 // j/2 = parent node number
 // compare(val[k], rks:val2*k]) && compare(val[k], val[2k+1])
 // vals[0] compares successfully with all children
-protocol Compared {
-    typealias T
-    func compare(lhs:T, rhs:T)
+public protocol PriorityQ : class {
+    typealias T : Comparable
+    var vals : [T] {get set}
+    var n  : Int {get set}
+    var isEmpty : Bool {get}
+    var size : Int {get}
+    func compare(lhs:T, rhs:T) -> Bool
+    func insert(val:T)
+    func delRoot() -> T?
+    func swim(var k:Int)
+    func sink(var k:Int)
 }
 
-public class PriorityQ<T where T:Comparable, T:Compared> {
+public extension PriorityQ {
     
-    private var vals    = [T]()
-    private var n : Int = 0
-    
-    public init() {
-    }
-    
-    // compare
-    func compare(lhs:T, rhs:T) -> Bool {
-        return lhs < rhs
-    }
-    
-    public init(vals:[T]) {
-        self.vals = vals
-        self.n = self.vals.count
-        for k in (1...self.n/2).reverse() {
-            self.sink(k)
-        }
-    }
-    
-    public var isEmpty : Bool {
+    var isEmpty : Bool {
         return self.n == 0
     }
     
-    public var size : Int {
+    var size : Int {
         return self.n
     }
-    
-    public func insert(val:T) {
+
+    func insert(val:T) {
         self.vals.append(val)
         ++self.n
         self.swim(self.n)
     }
-    
-    public func delRoot() -> T? {
+
+    func delRoot() -> T? {
         if let maxVal = self.vals.first {
             --self.n
             ArrayTools.swap(&self.vals, index:0, withIndex:self.n)
@@ -69,12 +58,14 @@ public class PriorityQ<T where T:Comparable, T:Compared> {
             return nil
         }
     }
-    
+
     // raise node in tree untill heap ordered
-    public func swim(var k:Int) {
+    func swim(var k:Int) {
+        print("swim k=\(k), n=\(self.n)")
         // k=child node, j=parent node
         while k > 1 {
             let j = k/2
+            print("k=\(k), j=\(j)")
             // convert to node ids to array index
             let ji = j-1, ki = k-1
             if self.compare(self.vals[ji], rhs:self.vals[ki]) {
@@ -89,10 +80,12 @@ public class PriorityQ<T where T:Comparable, T:Compared> {
     }
     
     // lower node in tress untill heap ordered
-    public func sink(var k:Int) {
+    func sink(var k:Int) {
+        print("sink k=\(k), n=\(self.n)")
         // k=parent node, j = child node
         while 2*k <= self.n {
             var j = 2*k
+            print("k=\(k), j=\(j)")
             // convert to node ids to array index
             var ji = j-1, ki = k-1
             // compare to children if two are present. if j > self.n there is only one child
@@ -109,7 +102,7 @@ public class PriorityQ<T where T:Comparable, T:Compared> {
             }
         }
     }
-    
+
 }
 
 // Minimum Priority Queue
@@ -122,20 +115,29 @@ public class PriorityQ<T where T:Comparable, T:Compared> {
 // j/2 = parent node number
 // val[k] <= val2*k] && val[k] <= val[2k+1]
 // vals[0] is smalles value
-public class MinPriorityQ<T:Comparable> : PriorityQ<T> {
+public final class MinPriorityQ<T:Comparable> : PriorityQ {
     
-    public override init() {
-        super.init()
+    public var vals : [T] = []
+    public var n = 0
+
+    public init() {}
+
+    public init(vals:[T]) {
+        self.vals = vals
+        self.n = self.vals.count
+        for k in (1...self.n/2).reverse() {
+            self.sink(k)
+        }
     }
-    
-    override func compare(lhs:T, rhs:T) -> Bool {
+
+    public func compare(lhs:T, rhs:T) -> Bool {
         return lhs > rhs
     }
     
     public func delMin() -> T? {
         return self.delRoot()
     }
-    
+
 }
 
 // Maximum Priority Queue
@@ -148,13 +150,22 @@ public class MinPriorityQ<T:Comparable> : PriorityQ<T> {
 // j/2 = parent node number
 // val[k] >= val2*k] && val[k] >= val[2k+1]
 // vals[0] is largest value
-public class MaxPriorityQ<T:Comparable> : PriorityQ<T> {
+public class MaxPriorityQ<T:Comparable> : PriorityQ {
     
-    public override init() {
-        super.init()
+    public var vals : [T] = []
+    public var n = 0
+
+    public init() {}
+    
+    public init(vals:[T]) {
+        self.vals = vals
+        self.n = self.vals.count
+        for k in (1...self.n/2).reverse() {
+            self.sink(k)
+        }
     }
     
-    override func compare(lhs:T, rhs:T) -> Bool {
+    public func compare(lhs:T, rhs:T) -> Bool {
         return lhs < rhs
     }
     

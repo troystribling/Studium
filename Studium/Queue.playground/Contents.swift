@@ -17,5 +17,5 @@ queue.isEmpty
 
 // Priority queue
 let transactionFile = XCPSharedDataDirectoryPath + "/tinyBatch.txt"
-let vals = Data.Transaction.load(transactionFile)
-vals[1] > vals[0]
+let transactions = Data.Transaction.load(transactionFile)
+PQClient.topVals([10,5,4,20,6,8], nVals:2)

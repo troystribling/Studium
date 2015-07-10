@@ -51,6 +51,7 @@
 		05E8CC7A1B48A636008EBA32 /* dickens.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dickens.txt; sourceTree = "<group>"; };
 		05E8CC7B1B48A636008EBA32 /* magna-carta.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "magna-carta.txt"; sourceTree = "<group>"; };
 		05E8CC7C1B48A636008EBA32 /* tinyBatch.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tinyBatch.txt; sourceTree = "<group>"; };
+		05F3452A1B4EC6BD00AF17EC /* Stack.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Stack.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,10 +94,10 @@
 		059AE8C81B37360900D5C16A /* Studium */ = {
 			isa = PBXGroup;
 			children = (
-				05E8CC791B48A636008EBA32 /* Data */,
 				059AE8CB1B37360900D5C16A /* Studium.h */,
 				054CB4501B4870A900953832 /* Queue.playground */,
 				059AE8E41B37366700D5C16A /* Sort.playground */,
+				05F3452A1B4EC6BD00AF17EC /* Stack.playground */,
 				059AE8E21B37362500D5C16A /* ArrayTools.swift */,
 				054CB4411B486C0600953832 /* Data.swift */,
 				051E15AF1B374112001D2E80 /* Logger.swift */,
@@ -104,6 +105,7 @@
 				054CB4381B484E6200953832 /* QueueTools.swift */,
 				056AC7D41B3788B200251679 /* Sort.swift */,
 				054CB43A1B484F4800953832 /* Stack.swift */,
+				05E8CC791B48A636008EBA32 /* Data */,
 				059AE8C91B37360900D5C16A /* Supporting Files */,
 			);
 			path = Studium;

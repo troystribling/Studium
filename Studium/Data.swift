@@ -18,7 +18,7 @@ public struct Data {
         case ParseError
     }
     
-    public final class Transaction : Comparable, Loadable {
+    public final class Transaction : Comparable, Loadable, CustomStringConvertible {
         
         let who:String!
         let when:NSDate!
@@ -56,6 +56,10 @@ public struct Data {
             self.when = when
         }
         
+        // CustomStringConvertible
+        public var description: String {
+            return "who:\(self.who), when:\(self.when), amount:\(self.amount)"
+        }
     }
     
 }
