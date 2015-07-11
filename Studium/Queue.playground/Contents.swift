@@ -15,7 +15,38 @@ for i in queue {
 }
 queue.isEmpty
 
-// Priority queue
+// MaxPriorityQ
+let maxPQ = MaxPriorityQ<Int>()
+maxPQ.insert(5)
+maxPQ.insert(7)
+maxPQ.insert(1)
+maxPQ.insert(-10)
+maxPQ.insert(10)
+print(maxPQ.delMax())
+print(maxPQ.delMax())
+print(maxPQ.delMax())
+print(maxPQ.delMax())
+print(maxPQ.delMax())
+print(maxPQ.delMax())
+
+// MinPriorityQ
+let minPQ = MinPriorityQ<Int>()
+minPQ.insert(5)
+minPQ.insert(7)
+minPQ.insert(1)
+minPQ.insert(-10)
+minPQ.insert(10)
+print(minPQ.delMin())
+print(minPQ.delMin())
+print(minPQ.delMin())
+print(minPQ.delMin())
+print(minPQ.delMin())
+
+// MinPriorityQ Transactions
 let transactionFile = XCPSharedDataDirectoryPath + "/tinyBatch.txt"
 let transactions = Data.Transaction.load(transactionFile)
-PQClient.topVals([10,5,4,20,6,8], nVals:2)
+PQClient.maxVals(transactions, nVals:5)
+
+// MaxPriorityQ Transactions
+PQClient.minVals(transactions, nVals:5)
+

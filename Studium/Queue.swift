@@ -52,7 +52,7 @@ public extension PriorityQ {
             --self.n
             ArrayTools.swap(&self.vals, index:0, withIndex:self.n)
             self.vals.removeLast()
-            self.sink(0)
+            self.sink(1)
             return maxVal
         } else {
             return nil
@@ -61,11 +61,9 @@ public extension PriorityQ {
 
     // raise node in tree untill heap ordered
     func swim(var k:Int) {
-        print("swim k=\(k), n=\(self.n)")
         // k=child node, j=parent node
         while k > 1 {
             let j = k/2
-            print("k=\(k), j=\(j)")
             // convert to node ids to array index
             let ji = j-1, ki = k-1
             if self.compare(self.vals[ji], rhs:self.vals[ki]) {
@@ -81,14 +79,12 @@ public extension PriorityQ {
     
     // lower node in tress untill heap ordered
     func sink(var k:Int) {
-        print("sink k=\(k), n=\(self.n)")
         // k=parent node, j = child node
         while 2*k <= self.n {
             var j = 2*k
-            print("k=\(k), j=\(j)")
             // convert to node ids to array index
             var ji = j-1, ki = k-1
-            // compare to children if two are present. if j > self.n there is only one child
+            // compare light and right children if two are present. if j > self.n there is only one child
             if (j < self.n) && self.compare(self.vals[ji], rhs:self.vals[ji+1]) {
                 ++j; ++ji
             }
@@ -114,6 +110,7 @@ public extension PriorityQ {
 // j = child node number
 // j/2 = parent node number
 // val[k] <= val2*k] && val[k] <= val[2k+1]
+// [2,2,5,3,4,8,9]
 // vals[0] is smalles value
 public final class MinPriorityQ<T:Comparable> : PriorityQ {
     
@@ -149,6 +146,7 @@ public final class MinPriorityQ<T:Comparable> : PriorityQ {
 // j = child node number
 // j/2 = parent node number
 // val[k] >= val2*k] && val[k] >= val[2k+1]
+// [10,9,6,2,1,3,2]
 // vals[0] is largest value
 public class MaxPriorityQ<T:Comparable> : PriorityQ {
     
@@ -169,7 +167,7 @@ public class MaxPriorityQ<T:Comparable> : PriorityQ {
         return lhs < rhs
     }
     
-    public func delMin() -> T? {
+    public func delMax() -> T? {
         return self.delRoot()
     }
 

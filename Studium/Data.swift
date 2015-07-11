@@ -8,17 +8,13 @@
 
 import Foundation
 
-public protocol Loadable {
-    static func load(file:String) -> [Self]
-}
-
 public struct Data {
     
     enum TransactionError : ErrorType {
         case ParseError
     }
     
-    public final class Transaction : Comparable, Loadable, CustomStringConvertible {
+    public final class Transaction : Comparable, CustomStringConvertible {
         
         let who:String!
         let when:NSDate!

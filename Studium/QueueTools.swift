@@ -10,23 +10,43 @@ import Foundation
 
 public struct PQClient {
     
-    public static func topVals<T where T:Comparable>(items:[T], nVals:Int) {
+    public static func maxVals<T:Comparable>(vals:[T], nVals:Int) {
         let pq = MinPriorityQ<T>()
-        for item in items {
-            pq.insert(item)
+        for val in vals {
+            pq.insert(val)
             if pq.size > nVals {
                 pq.delMin()
             }
         }
-        let minvals = Stack<T>()
+        let minVals = Stack<T>()
         while(!pq.isEmpty) {
             if let minVal = pq.delMin() {
-                minvals.push(minVal)
+                minVals.push(minVal)
             }
         }
-        for minVal in minvals {
+        print("\(nVals) Maximum Values")
+        for minVal in minVals {
             print(minVal)
         }
     }
-    
+
+    public static func minVals<T:Comparable>(vals:[T], nVals:Int) {
+        let pq = MaxPriorityQ<T>()
+        for val in vals {
+            pq.insert(val)
+            if pq.size > nVals {
+                pq.delMax()
+            }
+        }
+        let maxVals = Stack<T>()
+        while !pq.isEmpty {
+            if let maxVal = pq.delMax() {
+                maxVals.push(maxVal)
+            }
+        }
+        print("\(nVals) Minimum Values")
+        for maxVal in maxVals {
+            print(maxVal)
+        }
+    }
 }
