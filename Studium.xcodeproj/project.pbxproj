@@ -35,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		051E15AF1B374112001D2E80 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		054721E81B51A34900BDD85A /* Bag.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; name = Bag.playground; path = ../Bag.playground; sourceTree = "<group>"; };
 		054CB4381B484E6200953832 /* QueueTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTools.swift; sourceTree = "<group>"; };
 		054CB43A1B484F4800953832 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		054CB4411B486C0600953832 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -97,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				059AE8CB1B37360900D5C16A /* Studium.h */,
+				054721E81B51A34900BDD85A /* Bag.playground */,
 				054CB4501B4870A900953832 /* Queue.playground */,
 				059AE8E41B37366700D5C16A /* Sort.playground */,
 				05F3452A1B4EC6BD00AF17EC /* Stack.playground */,
