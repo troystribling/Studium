@@ -8,24 +8,6 @@
 
 import Foundation
 
-public struct BagGenerator<T> : GeneratorType {
-
-    private let bag : Bag<T>
-    private var index = 0
-    
-    init(bag:Bag<T>) {
-        self.bag = bag
-    }
-    
-    public mutating func next() -> T? {
-        if index < self.bag.size {
-            return self.bag.vals[++index - 1]
-        } else {
-            return nil
-        }
-    }
-
-}
 public class Bag<T> : SequenceType {
    
     internal var vals : [T] = []
@@ -52,6 +34,25 @@ public class Bag<T> : SequenceType {
     // SequenceType
     public func generate() -> BagGenerator<T> {
         return BagGenerator<T>(bag:self)
+    }
+    
+}
+
+public struct BagGenerator<T> : GeneratorType {
+    
+    private let bag : Bag<T>
+    private var index = 0
+    
+    init(bag:Bag<T>) {
+        self.bag = bag
+    }
+    
+    public mutating func next() -> T? {
+        if index < self.bag.size {
+            return self.bag.vals[++index - 1]
+        } else {
+            return nil
+        }
     }
     
 }

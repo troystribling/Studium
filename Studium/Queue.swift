@@ -18,8 +18,9 @@ import Foundation
 // j/2 = parent node number
 // compare(val[k], rks:val2*k]) && compare(val[k], val[2k+1])
 // vals[0] compares successfully with all children
-public protocol PriorityQ : class {
+public protocol PriorityQ : class, SequenceType {
     typealias T : Comparable
+    // PriorityQ
     var vals : [T] {get set}
     var n  : Int {get set}
     var isEmpty : Bool {get}
@@ -98,7 +99,7 @@ public extension PriorityQ {
             }
         }
     }
-
+    
 }
 
 // Minimum Priority Queue
@@ -135,6 +136,18 @@ public final class MinPriorityQ<T:Comparable> : PriorityQ {
         return self.delRoot()
     }
 
+    // SequenceType
+    public func generate() -> MinPriorityQGenerator<T> {
+        return MinPriorityQGenerator(pq:self)
+    }
+
+}
+
+public struct MinPriorityQGenerator<T:Comparable> : GeneratorType {
+    let pq : MinPriorityQ<T>
+    public mutating func next() -> T? {
+        return self.pq.delRoot()
+    }
 }
 
 // Maximum Priority Queue
@@ -170,17 +183,21 @@ public class MaxPriorityQ<T:Comparable> : PriorityQ {
     public func delMax() -> T? {
         return self.delRoot()
     }
+    
+    public func generate() -> MaxPriorityQGenerator<T> {
+        return MaxPriorityQGenerator(pq:self)
+    }
 
 }
 
-// FIFO Queue
-public struct QueueGenerator<T> : GeneratorType {
-    let queue : Queue<T>
+public struct MaxPriorityQGenerator<T:Comparable> :GeneratorType {
+    let pq : MaxPriorityQ<T>
     public mutating func next() -> T? {
-        return self.queue.dequeue()
+        return pq.delRoot()
     }
 }
 
+// FIFO Queue
 public class Queue<T> : SequenceType {
     
     private var vals = [T]()
@@ -210,4 +227,13 @@ public class Queue<T> : SequenceType {
     }
 
 }
+
+public struct QueueGenerator<T> : GeneratorType {
+    let queue : Queue<T>
+    public mutating func next() -> T? {
+        return self.queue.dequeue()
+    }
+}
+
+
     

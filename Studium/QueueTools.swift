@@ -24,7 +24,7 @@ public struct PQClient {
                 minVals.push(minVal)
             }
         }
-        print("\(nVals) Maximum Values")
+        print("\n\(nVals) Maximum Values")
         for minVal in minVals {
             print(minVal)
         }
@@ -44,7 +44,7 @@ public struct PQClient {
                 maxVals.push(maxVal)
             }
         }
-        print("\(nVals) Minimum Values")
+        print("\n\(nVals) Minimum Values")
         for maxVal in maxVals {
             print(maxVal)
         }

@@ -9,13 +9,6 @@
 import Foundation
 
 
-public struct StackGenerator<T> : GeneratorType {
-    let stack : Stack<T>
-    public mutating func next() -> T? {
-        return self.stack.pop()
-    }
-}
-
 public class Stack<T> : SequenceType {
     
     internal var vals = [T]()
@@ -45,3 +38,11 @@ public class Stack<T> : SequenceType {
     }
     
 }
+
+public struct StackGenerator<T> : GeneratorType {
+    let stack : Stack<T>
+    public mutating func next() -> T? {
+        return self.stack.pop()
+    }
+}
+
