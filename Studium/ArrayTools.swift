@@ -10,11 +10,11 @@ import Foundation
 
 public struct ArrayTools {
     
-    public static func fillUpTo(count:UInt32) -> [UInt32] {
+    public static func fillUpTo<T where T:IntegerType>(count:T) -> [T] {
         return (0..<count).map{$0}
     }
 
-    public static func fillReversedUpTo(count:UInt32) -> [UInt32] {
+    public static func fillReversedUpTo<T where T:IntegerType>(count:T) -> [T] {
         return (0..<count).map{count - 1 - $0}
     }
 

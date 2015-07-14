@@ -10,10 +10,6 @@ import Foundation
 
 public struct Data {
     
-    enum TransactionError : ErrorType {
-        case ParseError
-    }
-    
     public final class Transaction : Comparable, CustomStringConvertible {
         
         let who:String!
@@ -23,27 +19,23 @@ public struct Data {
         public class func load(file:String) -> [Transaction] {
             let dateFormatter = NSDateFormatter()
             dateFormatter.dateFormat = "MM/dd/yyyy"
-            do {
-                let data = try NSString(contentsOfFile:file, encoding:NSUTF8StringEncoding) as String
-                let regex = try NSRegularExpression(pattern:"\\s+", options:[])
-                let rows = split(data.characters){$0=="\n"}.map {slice -> [String] in
-                    let row = NSMutableString()
-                    row.setString(String(slice))
-                    regex.replaceMatchesInString(row, options:[], range:NSMakeRange(0, row.length-1), withTemplate:",")
-                    return split(String(row).characters){$0==","}.map(String.init)
-                }
-                var trans = [Transaction]()
-                for row in rows {
-                    if row.count == 3 {
-                        if let date = dateFormatter.dateFromString(row[1]), amount = Float(row[2]) {
-                            trans.append(Transaction(who:row[0], when:date, amount:amount))
-                        }
+            let data = try! NSString(contentsOfFile:file, encoding:NSUTF8StringEncoding) as String
+            let regex = try! NSRegularExpression(pattern:"\\s+", options:[])
+            let rows = split(data.characters){$0=="\n"}.map {slice -> [String] in
+                let row = NSMutableString()
+                row.setString(String(slice))
+                regex.replaceMatchesInString(row, options:[], range:NSMakeRange(0, row.length-1), withTemplate:",")
+                return split(String(row).characters){$0==","}.map(String.init)
+            }
+            var trans = [Transaction]()
+            for row in rows {
+                if row.count == 3 {
+                    if let date = dateFormatter.dateFromString(row[1]), amount = Float(row[2]) {
+                        trans.append(Transaction(who:row[0], when:date, amount:amount))
                     }
                 }
-                return trans
-            } catch {
-                return []
             }
+            return trans
         }
         
         public init(who:String, when:NSDate, amount:Float) {
@@ -58,6 +50,39 @@ public struct Data {
         }
     }
     
+    public struct Connection : CustomStringConvertible {
+        let p : Int
+        let q : Int
+        
+        public static func load(file:String) -> (Int, [Connection]) {
+            let data = try! NSString(contentsOfFile:file, encoding:NSUTF8StringEncoding) as String
+            let rows = split(data.characters){$0=="\n"}
+            if rows.count > 2 {
+                if let nrows = Int(String(rows[0])) {
+                    var connections = [Connection]()
+                    for row in rows[1..<rows.count] {
+                        let pqs = split(String(row).characters){$0==" "}.map(String.init)
+                        if pqs.count >= 2 {
+                            if let p = Int(pqs[0]), q = Int(pqs[1]) {
+                                connections.append(Connection(p:p, q:q))
+                            }
+                        }
+                    }
+                    return (nrows, connections)
+                } else {
+                    return (0,[])                    
+                }
+            } else {
+                return (0,[])
+            }
+        }
+        
+        // CustomStringConvertible
+        public var description : String {
+            return "p:\(p), q:\(q)"
+        }
+        
+    }
 }
 
 // equitable
