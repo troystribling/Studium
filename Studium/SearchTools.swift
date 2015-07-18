@@ -10,7 +10,11 @@ import Foundation
 
 public struct UFClient {
     
-    public func quickFind(connections:[Data.Connection], nrows:Int) {
-        
+    public static func connect(connections:[Data.Connection], uf:UnionFind) {
+        for connection in connections {
+            if !uf.connected(connection.p, q:connection.q) {
+                uf.union(connection.p, q:connection.q)
+            }
+        }
     }
 }

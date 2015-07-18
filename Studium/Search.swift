@@ -10,7 +10,8 @@ import Foundation
 
 public protocol UnionFind {
     
-    var count : Int {get}
+    var count : Int     {get}
+    var nodes : [Int]   {get}
     
     func connected(p:Int, q:Int) -> Bool
     func find(p:Int) -> Int
@@ -23,6 +24,7 @@ public extension UnionFind {
     func connected(p:Int, q:Int) -> Bool {
         return self.find(p) == self.find(q)
     }
+    
 }
 
 public class UnionQuickFind : UnionFind {
@@ -32,6 +34,10 @@ public class UnionQuickFind : UnionFind {
     
     public var count : Int {
         return self.n
+    }
+    
+    public var nodes : [Int] {
+        return self.ids
     }
     
     public init() {
@@ -55,7 +61,7 @@ public class UnionQuickFind : UnionFind {
             if self.ids[i] == pid {
                 self.ids[i] = qid
             }
-            --self.n
         }
+        --self.n
     }
 }

@@ -79,7 +79,7 @@ public struct Data {
         
         // CustomStringConvertible
         public var description : String {
-            return "p:\(p), q:\(q)"
+            return "[p:\(p), q:\(q)]"
         }
         
     }
