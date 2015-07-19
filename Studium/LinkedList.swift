@@ -36,28 +36,32 @@ public class LinkedList<T> : SequenceType {
     
     public func push(item:T) {
         let newNode = LinkedListNode(item:item)
-        self.first?.next = newNode
-        ++self.n
+        newNode.next = self.first
         self.first = newNode
         if self.isEmpty {
             self.last = newNode
         }
+        ++self.n
     }
     
     public func pop() -> T? {
         let oldNode = self.first
         self.first = oldNode?.next
-        --self.n
         if self.isEmpty {
             self.last = nil
         }
+        --self.n
         return oldNode?.item
     }
     
     public func enqueue(item:T) {
-        let newNode = LinkedListNode(item:item)
-        self.last?.next = newNode
-        self.last = newNode
+        let oldlast = self.last
+        self.last = LinkedListNode(item:item)
+        if self.isEmpty {
+            self.first = self.last
+        } else {
+            oldlast?.next = self.last
+        }
         ++self.n
     }
     
@@ -81,11 +85,11 @@ public struct LinkeListGenerator<T> : GeneratorType {
         self.currentNode = list.first
     }
     
-    public mutating func next() -> LinkedListNode<T>? {
+    public mutating func next() -> T? {
         if let currentNode = self.currentNode {
             let node = currentNode
             self.currentNode = node.next
-            return node
+            return node.item
         } else {
             return nil
         }
