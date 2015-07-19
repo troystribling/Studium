@@ -3,18 +3,16 @@
 //  Studium
 //
 //  Created by Troy Stribling on 7/12/15.
-//  Copyright © 2015 gnos.us. All rights reserved.
+//  Copyright (c) 2014 Troy Stribling. The MIT License (MIT).
 //
 
 import Foundation
 
 public struct UFClient {
     
-    public static func connect(connections:[Data.Connection], uf:UnionFind) {
+    public static func connect(connections:[Data.Connection], uf:UF) {
         for connection in connections {
-            if !uf.connected(connection.p, q:connection.q) {
-                uf.union(connection.p, q:connection.q)
-            }
+            uf.union(connection.p, q:connection.q)
         }
     }
 }

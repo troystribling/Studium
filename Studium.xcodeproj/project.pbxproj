@@ -47,7 +47,7 @@
 		05449D581B52F6F900417A0C /* mediumUF.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mediumUF.txt; sourceTree = "<group>"; };
 		05449D591B52F6F900417A0C /* tinyUF.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tinyUF.txt; sourceTree = "<group>"; };
 		05449D5D1B533C4500417A0C /* SearchTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTools.swift; sourceTree = "<group>"; };
-		05449D611B53460C00417A0C /* Search.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Search.playground; sourceTree = "<group>"; };
+		05449D611B53460C00417A0C /* UnionFind.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = UnionFind.playground; sourceTree = "<group>"; };
 		054721E81B51A34900BDD85A /* Bag.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Bag.playground; sourceTree = "<group>"; };
 		054CB4381B484E6200953832 /* QueueTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTools.swift; sourceTree = "<group>"; };
 		054CB43A1B484F4800953832 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -94,7 +94,7 @@
 			children = (
 				054721E81B51A34900BDD85A /* Bag.playground */,
 				05D07D5A1B51C58D0036187D /* Queue.playground */,
-				05449D611B53460C00417A0C /* Search.playground */,
+				05449D611B53460C00417A0C /* UnionFind.playground */,
 				05D07D5B1B51C58D0036187D /* Sort.playground */,
 				05D07D5C1B51C58D0036187D /* Stack.playground */,
 				059AE8C71B37360900D5C16A /* Products */,
