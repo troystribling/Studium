@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		051E15B01B374112001D2E80 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E15AF1B374112001D2E80 /* Logger.swift */; };
+		0543F16C1B5C7ECF00531AF7 /* tinyTale.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0543F16B1B5C7ECF00531AF7 /* tinyTale.txt */; };
+		0543F16E1B5C7F9900531AF7 /* tale.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0543F16D1B5C7F9900531AF7 /* tale.txt */; };
 		05449D541B52DEC200417A0C /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05449D531B52DEC200417A0C /* LinkedList.swift */; };
 		05449D561B52DF0F00417A0C /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05449D551B52DF0F00417A0C /* Search.swift */; };
 		05449D5A1B52F6F900417A0C /* largeUF.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05449D571B52F6F900417A0C /* largeUF.txt */; };
@@ -41,6 +43,8 @@
 
 /* Begin PBXFileReference section */
 		051E15AF1B374112001D2E80 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		0543F16B1B5C7ECF00531AF7 /* tinyTale.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tinyTale.txt; sourceTree = "<group>"; };
+		0543F16D1B5C7F9900531AF7 /* tale.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tale.txt; sourceTree = "<group>"; };
 		05449D531B52DEC200417A0C /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		05449D551B52DF0F00417A0C /* Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		05449D571B52F6F900417A0C /* largeUF.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = largeUF.txt; sourceTree = "<group>"; };
@@ -167,7 +171,9 @@
 				05449D571B52F6F900417A0C /* largeUF.txt */,
 				05E8CC7B1B48A636008EBA32 /* magna-carta.txt */,
 				05449D581B52F6F900417A0C /* mediumUF.txt */,
+				0543F16D1B5C7F9900531AF7 /* tale.txt */,
 				05E8CC7C1B48A636008EBA32 /* tinyBatch.txt */,
+				0543F16B1B5C7ECF00531AF7 /* tinyTale.txt */,
 				05449D591B52F6F900417A0C /* tinyUF.txt */,
 			);
 			path = Data;
@@ -264,8 +270,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				05E8CC7F1B48A636008EBA32 /* tinyBatch.txt in Resources */,
+				0543F16C1B5C7ECF00531AF7 /* tinyTale.txt in Resources */,
 				05E8CC7D1B48A636008EBA32 /* dickens.txt in Resources */,
 				05449D5B1B52F6F900417A0C /* mediumUF.txt in Resources */,
+				0543F16E1B5C7F9900531AF7 /* tale.txt in Resources */,
 				05E8CC7E1B48A636008EBA32 /* magna-carta.txt in Resources */,
 				05449D5A1B52F6F900417A0C /* largeUF.txt in Resources */,
 				05449D5C1B52F6F900417A0C /* tinyUF.txt in Resources */,

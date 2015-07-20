@@ -9,7 +9,7 @@
 import Foundation
 
 
-// Union Find constructs a connected network of nodes
+// Union Find constructs a connected network of nodes and supports queries to determie connectivity
 public protocol UF {
     
     // number of connected networks
@@ -195,5 +195,42 @@ public class UFWeightedQuickUnion : UF {
         }
         // decrement the number of networks by 1
         --self.n
+    }
+}
+
+// Symbol Table implemented with binary search
+public class STBinarySearch<Key:Comparable, Value> {
+    
+    private var keys : [Key]  = []
+    private var values : [Value] = []
+    private var n : Int = 0
+    
+    public var size : Int {
+        return self.n
+    }
+    
+    public var isEmpty : Bool {
+        return self.size == 0
+    }
+    
+    public init () {}
+    
+    public func get(key:Key) -> Value? {
+        guard !self.isEmpty else {
+            return nil
+        }
+        return self.values.first
+    }
+    
+    public func rank(key:Key) -> Int {
+        return 0
+    }
+    
+    public func put(key:Key, value:Value) {
+        
+    }
+    
+    public func delete(key:Key) {
+        
     }
 }
