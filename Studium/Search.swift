@@ -198,6 +198,22 @@ public class UFWeightedQuickUnion : UF {
     }
 }
 
+// Binary search
+public struct BinarySearch {
+    
+    public static func rank<T:Comparable>(key:T, values:[T]) -> Int? {
+        return self.rank(key, values:values, lo:0, hi:values.count-1)
+    }
+    
+    
+    public static func rank<T:Comparable>(key:T, values:[T], lo:Int, hi:Int) -> Int? {
+        guard lo <= hi else {
+            return nil
+        }
+        return nil
+    }
+}
+
 // Symbol Table implemented with binary search
 public class STBinarySearch<Key:Comparable, Value> {
     
@@ -219,7 +235,12 @@ public class STBinarySearch<Key:Comparable, Value> {
         guard !self.isEmpty else {
             return nil
         }
-        return self.values.first
+        let i = self.rank(key)
+        if i < self.n && self.keys[i] == key {
+            return self.values[i]
+        } else {
+            return nil
+        }
     }
     
     public func rank(key:Key) -> Int {
@@ -227,10 +248,15 @@ public class STBinarySearch<Key:Comparable, Value> {
     }
     
     public func put(key:Key, value:Value) {
-        
+        let i = self.rank(key)
+        if i < self.n && self.keys[i] == key {
+            self.values[i] = value
+        }
+        ++self.n
     }
     
     public func delete(key:Key) {
         
     }
+    
 }
