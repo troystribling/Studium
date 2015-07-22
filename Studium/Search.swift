@@ -199,18 +199,33 @@ public class UFWeightedQuickUnion : UF {
 }
 
 // Binary search
+// Find the index in values of key. values is assumed to be sorted
 public struct BinarySearch {
     
+    // return the index of key in values
     public static func rank<T:Comparable>(key:T, values:[T]) -> Int? {
+        // initiate recursive calls that
         return self.rank(key, values:values, lo:0, hi:values.count-1)
     }
     
-    
+    // return the index of key in values where the range of indexes lies between lo and hi
     public static func rank<T:Comparable>(key:T, values:[T], lo:Int, hi:Int) -> Int? {
+        // key not found
         guard lo <= hi else {
             return nil
         }
-        return nil
+        // test mid as key rank
+        let mid = lo + (hi - lo)/2
+        if key < values[mid] {
+            // rank is less than mid look for rank between lo and mid
+            return self.rank(key, values:values, lo:lo, hi:mid - 1)
+        } else if key > values[mid] {
+            // rank is larger than mid look for rank between mid and hi
+            return self.rank(key, values:values, lo:mid+1, hi:hi)
+        } else {
+            // rank found
+            return mid
+        }
     }
 }
 

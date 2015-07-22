@@ -70,6 +70,7 @@
 		05D07D5B1B51C58D0036187D /* Sort.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Sort.playground; sourceTree = "<group>"; };
 		05D07D5C1B51C58D0036187D /* Stack.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Stack.playground; sourceTree = "<group>"; };
 		05E067CA1B5C3D8900B52C66 /* LinkedList.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = LinkedList.playground; sourceTree = "<group>"; };
+		05E067CB1B5F5DF200B52C66 /* BinarySearch.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BinarySearch.playground; sourceTree = "<group>"; };
 		05E8CC7A1B48A636008EBA32 /* dickens.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dickens.txt; sourceTree = "<group>"; };
 		05E8CC7B1B48A636008EBA32 /* magna-carta.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "magna-carta.txt"; sourceTree = "<group>"; };
 		05E8CC7C1B48A636008EBA32 /* tinyBatch.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tinyBatch.txt; sourceTree = "<group>"; };
@@ -98,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				054721E81B51A34900BDD85A /* Bag.playground */,
+				05E067CB1B5F5DF200B52C66 /* BinarySearch.playground */,
 				05E067CA1B5C3D8900B52C66 /* LinkedList.playground */,
 				05D07D5A1B51C58D0036187D /* Queue.playground */,
 				05D07D5B1B51C58D0036187D /* Sort.playground */,
