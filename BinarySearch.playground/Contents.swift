@@ -16,3 +16,8 @@ if BinarySearch.rank(15, values:vals) == nil {
 } else {
     print("Error: value found")
 }
+
+let st = STBinarySearch(capacity:10, initialKey:0, initialValue:"")
+st.keys = vals
+st.rank(12)
+

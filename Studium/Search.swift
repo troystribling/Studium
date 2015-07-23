@@ -232,8 +232,9 @@ public struct BinarySearch {
 // Symbol Table implemented with binary search
 public class STBinarySearch<Key:Comparable, Value> {
     
-    private var keys : [Key]  = []
-    private var values : [Value] = []
+    // store keys in array and values in array indexed by key rank
+    public var keys : [Key]
+    private var values : [Value]
     private var n : Int = 0
     
     public var size : Int {
@@ -244,26 +245,39 @@ public class STBinarySearch<Key:Comparable, Value> {
         return self.size == 0
     }
     
-    public init () {}
+    public init() {
+        self.values = [Value]()
+        self.keys = [Key]()
+    }
     
+    public init (capacity:Int, initialKey:Key, initialValue:Value) {
+        self.values = [Value](count:capacity, repeatedValue:initialValue)
+        self.keys = [Key](count:capacity, repeatedValue:initialKey)
+    }
+    
+    // get value for key
     public func get(key:Key) -> Value? {
+        // table has no keys
         guard !self.isEmpty else {
             return nil
         }
         let i = self.rank(key)
+        print("rank = \(i),")
         if i < self.n && self.keys[i] == key {
+            print("key found")
+            // value found
             return self.values[i]
         } else {
+            print("key not found")
+            // value not found
             return nil
         }
     }
     
-    public func rank(key:Key) -> Int {
-        return 0
-    }
-    
+    // add value to symbol table with key
     public func put(key:Key, value:Value) {
         let i = self.rank(key)
+        // key is in table. update value at key
         if i < self.n && self.keys[i] == key {
             self.values[i] = value
         }
@@ -272,6 +286,27 @@ public class STBinarySearch<Key:Comparable, Value> {
     
     public func delete(key:Key) {
         
+    }
+    
+    public func rank(key:Key) -> Int {
+        var lo = 0, hi = self.keys.count
+        while lo <= hi {
+            let mid = lo + (hi - lo)/2
+            let testKey = self.keys[mid]
+            print("lo=\(lo), hi=\(hi), mid=\(mid), key=\(key), testkey=\(testKey)")
+            if testKey > key {
+                print("testKey larger")
+                hi = mid - 1
+            } else if testKey < key {
+                print("testKey smaller")
+                lo = mid + 1
+            } else {
+                print("key found rank=\(mid)")
+                return mid
+            }
+        }
+        print("key not found rank=\(lo)")
+        return lo
     }
     
 }
