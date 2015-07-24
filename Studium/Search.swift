@@ -217,10 +217,10 @@ public struct BinarySearch {
         // test mid as key rank
         let mid = lo + (hi - lo)/2
         if key < values[mid] {
-            // rank is less than mid look for rank between lo and mid
+            // rank is less than mid look to right for rank between lo and mid-1
             return self.rank(key, values:values, lo:lo, hi:mid - 1)
         } else if key > values[mid] {
-            // rank is larger than mid look for rank between mid and hi
+            // rank is larger than mid look to left for rank between mid+1 and hi
             return self.rank(key, values:values, lo:mid+1, hi:hi)
         } else {
             // rank found
@@ -230,20 +230,32 @@ public struct BinarySearch {
 }
 
 // Symbol Table implemented with binary search
-public class STBinarySearch<Key:Comparable, Value> {
+public struct STBinarySearchGenerator<Key:Comparable,Value> : GeneratorType {
+
+    let st : STBinarySearch<Key, Value>
+    var i = 0
+    
+    init(st:STBinarySearch<Key, Value>) {
+        self.st = st
+    }
+    
+    public mutating func next() -> Key? {
+        if i < st.count {
+            let key = st.keys[i]
+            ++i
+            return key
+        } else {
+            return nil
+        }
+    }
+}
+
+public class STBinarySearch<Key:Comparable, Value> : CollectionType {
     
     // store keys in array and values in array indexed by key rank
-    public var keys : [Key]
-    private var values : [Value]
-    private var n : Int = 0
-    
-    public var size : Int {
-        return self.n
-    }
-    
-    public var isEmpty : Bool {
-        return self.size == 0
-    }
+    internal var keys : [Key]
+    internal var values : [Value]
+    internal var n : Int = 0
     
     public init() {
         self.values = [Value]()
@@ -255,6 +267,16 @@ public class STBinarySearch<Key:Comparable, Value> {
         self.keys = [Key](count:capacity, repeatedValue:initialKey)
     }
     
+    // return minimum key
+    var min : Key? {
+        return self.first
+    }
+    
+    // return maximum key
+    var max : Key? {
+        return self.last
+    }
+    
     // get value for key
     public func get(key:Key) -> Value? {
         // table has no keys
@@ -262,7 +284,7 @@ public class STBinarySearch<Key:Comparable, Value> {
             return nil
         }
         let i = self.rank(key)
-        print("rank = \(i),")
+        print("key=\(key), rank=\(i)")
         if i < self.n && self.keys[i] == key {
             print("key found")
             // value found
@@ -276,37 +298,87 @@ public class STBinarySearch<Key:Comparable, Value> {
     
     // add value to symbol table with key
     public func put(key:Key, value:Value) {
+        // rank is number of keys in self.keys less than key
         let i = self.rank(key)
-        // key is in table. update value at key
+        print("key=\(key), value=\(value), rank=\(i)")
+        // key is in table. update value and do not increment count
         if i < self.n && self.keys[i] == key {
+            print("updating value")
             self.values[i] = value
+            return
+        }
+        // key is not in self.keys location in keys is i
+        if i < self.keys.count {
+            // need to make room for key. move all keys left by one position.
+            for var j = self.n; j > i; --j {
+                self.keys[j] = self.keys[j-1]
+                self.values[j] = self.values[j-1]
+            }
+            self.keys[i] = key
+            self.values[i] = value
+        } else {
+            print("growing array add to end")
+            // array capacity reached add key tp end of keys
+            self.keys.append(key)
+            self.values.append(value)
         }
         ++self.n
+        print(keys)
+        print(values)
     }
     
     public func delete(key:Key) {
-        
     }
     
+    // return the number of keys in self.keys smaller than key. If key is in self.keys this will be the index
+    // of key. If key is not in self.keys this will be the index key would have if it were in keys.
     public func rank(key:Key) -> Int {
-        var lo = 0, hi = self.keys.count
+        var lo = 0, hi = self.n - 1
         while lo <= hi {
             let mid = lo + (hi - lo)/2
             let testKey = self.keys[mid]
-            print("lo=\(lo), hi=\(hi), mid=\(mid), key=\(key), testkey=\(testKey)")
             if testKey > key {
-                print("testKey larger")
+                // key is smaller than test key look to right for rank between lo and mid-1
                 hi = mid - 1
             } else if testKey < key {
-                print("testKey smaller")
+                // key is larger than testKey look to left for rank between mid+1 and hi
                 lo = mid + 1
             } else {
-                print("key found rank=\(mid)")
+                // key found return rank
                 return mid
             }
         }
-        print("key not found rank=\(lo)")
+        // no key found rank will be last value of lo. This follows since at previous step key was between
+        // lo < key < mid where mid = lo + 1 since serach would have been exhaustive
         return lo
     }
     
+    // CollectionType
+    public func generate() -> STBinarySearchGenerator<Key, Value> {
+        return STBinarySearchGenerator(st: self)
+    }
+    
+    public var count : Int {
+        return self.n
+    }
+    
+    public var isEmpty : Bool {
+        return self.count == 0
+    }
+    
+    public var first : Key? {
+        if self.count > 0 {
+            return self.keys.first
+        } else {
+            return nil
+        }
+    }
+    
+    public var last : Key? {
+        if self.count > 0 {
+            return self.keys[self.count]
+        } else {
+            return nil
+        }
+    }
 }

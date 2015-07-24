@@ -18,6 +18,12 @@ if BinarySearch.rank(15, values:vals) == nil {
 }
 
 let st = STBinarySearch(capacity:10, initialKey:0, initialValue:"")
-st.keys = vals
-st.rank(12)
-
+st.put(1, value:"Troy")
+st.put(2, value:"Stribling")
+st.put(3, value:"Dr.")
+print("Table: size: \(st.count)")
+for key in st {
+    if let value = st.get(key) {
+        print("key=\(key), value=\(value)")
+    }
+}
