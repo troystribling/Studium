@@ -16,7 +16,7 @@ public class Bag<T> : SequenceType {
         return self.vals.count == 0
     }
     
-    public var size : Int {
+    public var count : Int {
         return self.vals.count
     }
     
@@ -48,7 +48,7 @@ public struct BagGenerator<T> : GeneratorType {
     }
     
     public mutating func next() -> T? {
-        if index < self.bag.size {
+        if index < self.bag.count {
             return self.bag.vals[++index - 1]
         } else {
             return nil

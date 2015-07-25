@@ -14,7 +14,7 @@ public struct PQClient {
         let pq = MinPriorityQ<T>()
         for val in vals {
             pq.insert(val)
-            if pq.size > nVals {
+            if pq.count > nVals {
                 pq.delMin()
             }
         }
@@ -34,7 +34,7 @@ public struct PQClient {
         let pq = MaxPriorityQ<T>()
         for val in vals {
             pq.insert(val)
-            if pq.size > nVals {
+            if pq.count > nVals {
                 pq.delMax()
             }
         }

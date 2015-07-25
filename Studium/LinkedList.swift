@@ -30,7 +30,7 @@ public class LinkedList<T> : SequenceType {
     // number of node in list
     private var n : Int = 0
     
-    public var size : Int {
+    public var count : Int {
         return self.n
     }
     

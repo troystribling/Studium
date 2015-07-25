@@ -17,7 +17,7 @@ public class Stack<T> : SequenceType {
         return self.vals.count == 0
     }
     
-    public var size : Int {
+    public var count : Int {
         return self.vals.count
     }
     
@@ -29,7 +29,7 @@ public class Stack<T> : SequenceType {
     }
     
     public func pop() -> T? {
-        return self.isEmpty ? nil : self.vals.removeAtIndex(self.size-1)
+        return self.isEmpty ? nil : self.vals.removeAtIndex(self.count-1)
     }
     
     // SequenceType
@@ -41,7 +41,10 @@ public class Stack<T> : SequenceType {
 
 public struct StackGenerator<T> : GeneratorType {
     let stack : Stack<T>
-    public mutating func next() -> T? {
+    public init(stack:Stack<T>){
+        self.stack = stack
+    }
+    public func next() -> T? {
         return self.stack.pop()
     }
 }

@@ -239,18 +239,54 @@ public struct STBinarySearchGenerator<Key:Comparable,Value> : GeneratorType {
         self.st = st
     }
     
-    public mutating func next() -> Key? {
+    public mutating func next() -> (Key, Value)? {
         if i < st.count {
             let key = st.keys[i]
+            let value = st.values[i]
             ++i
-            return key
+            return (key, value)
         } else {
             return nil
         }
     }
 }
 
-public class STBinarySearch<Key:Comparable, Value> : CollectionType {
+public struct STIndex : ForwardIndexType, _Incrementable, Equatable, Comparable {
+    
+    private let index : Int
+    internal init(index:Int) {
+        self.index = index
+    }
+    // _Incremental
+    public func successor() -> STIndex {
+        return STIndex(index:index+1)
+    }
+    
+}
+
+// Equatable
+public func ==(lhs:STIndex, rhs:STIndex) -> Bool {
+    return lhs.index == rhs.index
+}
+
+// Comparable
+public func <(lhs:STIndex, rhs:STIndex) -> Bool {
+    return lhs.index < rhs.index
+}
+
+public func <=(lhs:STIndex, rhs:STIndex) -> Bool {
+    return lhs.index <= rhs.index
+}
+
+public func >(lhs:STIndex, rhs:STIndex) -> Bool {
+    return lhs.index > rhs.index
+}
+
+public func >=(lhs:STIndex, rhs:STIndex) -> Bool {
+    return lhs.index >= rhs.index
+}
+
+public class STBinarySearch<Key:Comparable, Value> : CollectionType, Indexable, SequenceType {
     
     // store keys in array and values in array indexed by key rank
     internal var keys : [Key]
@@ -277,8 +313,19 @@ public class STBinarySearch<Key:Comparable, Value> : CollectionType {
         return self.last
     }
     
+    public subscript(key:Key) -> Value? {
+        get {
+            return self.get(key)
+        }
+        set(newValue) {
+            if let newValue = newValue {
+                self.updateValue(key, value:newValue)
+            }
+        }
+    }
+    
     // get value for key
-    public func get(key:Key) -> Value? {
+    private func get(key:Key) -> Value? {
         // table has no keys
         guard !self.isEmpty else {
             return nil
@@ -297,7 +344,7 @@ public class STBinarySearch<Key:Comparable, Value> : CollectionType {
     }
     
     // add value to symbol table with key
-    public func put(key:Key, value:Value) {
+    public func updateValue(key:Key, value:Value) {
         // rank is number of keys in self.keys less than key
         let i = self.rank(key)
         print("key=\(key), value=\(value), rank=\(i)")
@@ -327,12 +374,13 @@ public class STBinarySearch<Key:Comparable, Value> : CollectionType {
         print(values)
     }
     
-    public func delete(key:Key) {
+    public func removeValueForKey(key:Key) -> Value? {
+        return nil
     }
     
     // return the number of keys in self.keys smaller than key. If key is in self.keys this will be the index
     // of key. If key is not in self.keys this will be the index key would have if it were in keys.
-    public func rank(key:Key) -> Int {
+    private func rank(key:Key) -> Int {
         var lo = 0, hi = self.n - 1
         while lo <= hi {
             let mid = lo + (hi - lo)/2
@@ -353,11 +401,15 @@ public class STBinarySearch<Key:Comparable, Value> : CollectionType {
         return lo
     }
     
-    // CollectionType
-    public func generate() -> STBinarySearchGenerator<Key, Value> {
-        return STBinarySearchGenerator(st: self)
+    public func indexForKey(key:Key) -> STIndex? {
+        if let rank = BinarySearch.rank(key, values:self.keys) {
+            return STIndex(index:rank)
+        } else {
+            return nil
+        }
     }
     
+    // CollectionType
     public var count : Int {
         return self.n
     }
@@ -376,9 +428,27 @@ public class STBinarySearch<Key:Comparable, Value> : CollectionType {
     
     public var last : Key? {
         if self.count > 0 {
-            return self.keys[self.count]
+            return self.keys[self.count-1]
         } else {
             return nil
         }
     }
+    
+    public var startIndex : STIndex {
+        return STIndex(index:0)
+    }
+    
+    public var endIndex : STIndex {
+        return STIndex(index: self.count)
+    }
+    
+    public subscript(position:STIndex) -> (Key, Value) {
+        let index = position.index
+        return (self.keys[index], self.values[index])
+    }
+    
+    public func generate() -> STBinarySearchGenerator<Key, Value> {
+        return STBinarySearchGenerator(st:self)
+    }
+    
 }

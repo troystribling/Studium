@@ -24,7 +24,7 @@ public protocol PriorityQ : class, SequenceType {
     var vals : [T] {get set}
     var n  : Int {get set}
     var isEmpty : Bool {get}
-    var size : Int {get}
+    var count : Int {get}
     func compare(lhs:T, rhs:T) -> Bool
     func insert(val:T)
     func delRoot() -> T?
@@ -38,7 +38,7 @@ public extension PriorityQ {
         return self.n == 0
     }
     
-    var size : Int {
+    var count : Int {
         return self.n
     }
 
@@ -145,7 +145,10 @@ public final class MinPriorityQ<T:Comparable> : PriorityQ {
 
 public struct MinPriorityQGenerator<T:Comparable> : GeneratorType {
     let pq : MinPriorityQ<T>
-    public mutating func next() -> T? {
+    public init(pq:MinPriorityQ<T>){
+        self.pq = pq
+    }
+    public func next() -> T? {
         return self.pq.delRoot()
     }
 }
@@ -192,7 +195,10 @@ public class MaxPriorityQ<T:Comparable> : PriorityQ {
 
 public struct MaxPriorityQGenerator<T:Comparable> :GeneratorType {
     let pq : MaxPriorityQ<T>
-    public mutating func next() -> T? {
+    public init(pq:MaxPriorityQ<T>){
+        self.pq = pq
+    }
+    public func next() -> T? {
         return pq.delRoot()
     }
 }
@@ -206,7 +212,7 @@ public class Queue<T> : SequenceType {
         return self.vals.count == 0
     }
     
-    public var size : Int {
+    public var count : Int {
         return self.vals.count
     }
 
@@ -230,7 +236,10 @@ public class Queue<T> : SequenceType {
 
 public struct QueueGenerator<T> : GeneratorType {
     let queue : Queue<T>
-    public mutating func next() -> T? {
+    public init(queue:Queue<T>){
+        self.queue = queue
+    }
+    public func next() -> T? {
         return self.queue.dequeue()
     }
 }

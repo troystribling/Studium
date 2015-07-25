@@ -10,11 +10,11 @@ stack.push(1)
 stack.push(2)
 stack.push(3)
 stack.push(4)
-print("prepop size=\(stack.size)")
+print("prepop size=\(stack.count)")
 if let item = stack.pop() {
     print("popped item=\(item)")
 }
-print("postpop size=\(stack.size)")
+print("postpop size=\(stack.count)")
 for item in stack {
     print(item)
 }
@@ -26,11 +26,11 @@ queue.enqueue(1)
 queue.enqueue(2)
 queue.enqueue(3)
 queue.enqueue(4)
-print("pre dequeue size=\(queue.size)")
+print("pre dequeue size=\(queue.count)")
 if let item = queue.dequeue() {
     print("dequed item=\(item)")
 }
-print("post dequeue size=\(queue.size)")
+print("post dequeue size=\(queue.count)")
 for item in queue {
     print(item)
 }
@@ -42,15 +42,15 @@ mixed.push(1)
 mixed.push(2)
 mixed.enqueue(3)
 mixed.enqueue(4)
-print("prepop size=\(mixed.size)")
+print("prepop size=\(mixed.count)")
 if let item = mixed.pop() {
     print("popped item=\(item)")
 }
-print("post pop pre dequeue size=\(mixed.size)")
+print("post pop pre dequeue size=\(mixed.count)")
 if let item = mixed.dequeue() {
     print("dequeued item=\(item)")
 }
-print("post dequeue size=\(mixed.size)")
+print("post dequeue size=\(mixed.count)")
 for item in mixed {
     print(item)
 }
