@@ -10,6 +10,7 @@
 		051E15B01B374112001D2E80 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051E15AF1B374112001D2E80 /* Logger.swift */; };
 		0543F16C1B5C7ECF00531AF7 /* tinyTale.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0543F16B1B5C7ECF00531AF7 /* tinyTale.txt */; };
 		0543F16E1B5C7F9900531AF7 /* tale.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0543F16D1B5C7F9900531AF7 /* tale.txt */; };
+		0543F1701B65AEF500531AF7 /* BinarySearchTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0543F16F1B65AEF500531AF7 /* BinarySearchTree.swift */; };
 		05449D541B52DEC200417A0C /* LinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05449D531B52DEC200417A0C /* LinkedList.swift */; };
 		05449D561B52DF0F00417A0C /* UnionFind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05449D551B52DF0F00417A0C /* UnionFind.swift */; };
 		05449D5A1B52F6F900417A0C /* largeUF.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05449D571B52F6F900417A0C /* largeUF.txt */; };
@@ -46,6 +47,7 @@
 		051E15AF1B374112001D2E80 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		0543F16B1B5C7ECF00531AF7 /* tinyTale.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tinyTale.txt; sourceTree = "<group>"; };
 		0543F16D1B5C7F9900531AF7 /* tale.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tale.txt; sourceTree = "<group>"; };
+		0543F16F1B65AEF500531AF7 /* BinarySearchTree.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearchTree.swift; sourceTree = "<group>"; };
 		05449D531B52DEC200417A0C /* LinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkedList.swift; sourceTree = "<group>"; };
 		05449D551B52DF0F00417A0C /* UnionFind.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnionFind.swift; sourceTree = "<group>"; };
 		05449D571B52F6F900417A0C /* largeUF.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = largeUF.txt; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				059AE8E21B37362500D5C16A /* ArrayTools.swift */,
 				05570E6C1B5193760085F5ED /* Bag.swift */,
 				0570BAA91B65466B0033495F /* BinarySearch.swift */,
+				0543F16F1B65AEF500531AF7 /* BinarySearchTree.swift */,
 				054CB4411B486C0600953832 /* Data.swift */,
 				05449D531B52DEC200417A0C /* LinkedList.swift */,
 				051E15AF1B374112001D2E80 /* Logger.swift */,
@@ -311,6 +314,7 @@
 				05449D561B52DF0F00417A0C /* UnionFind.swift in Sources */,
 				05570E6D1B5193760085F5ED /* Bag.swift in Sources */,
 				054CB4391B484E6300953832 /* QueueTools.swift in Sources */,
+				0543F1701B65AEF500531AF7 /* BinarySearchTree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

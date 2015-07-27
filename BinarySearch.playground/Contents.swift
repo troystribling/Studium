@@ -49,7 +49,7 @@ for (key, value) in st {
 
 // get value
 print("\nget Value")
-if let value = st.get(7) {
+if let value = st.getValueForKey(7) {
     print("\(value)")
 }
 
