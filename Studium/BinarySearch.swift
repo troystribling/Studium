@@ -39,27 +39,6 @@ public struct BinarySearch {
     }
 }
 
-// Iterate over all keys and values
-public struct STBinarySearchGenerator<Key:Comparable, Value> : GeneratorType {
-    
-    let st : STBinarySearch<Key, Value>
-    var i = 0
-    
-    init(st:STBinarySearch<Key, Value>) {
-        self.st = st
-    }
-    
-    public mutating func next() -> (Key, Value)? {
-        if i < st.count {
-            let key = st.keys[i]
-            let value = st.values[i++]
-            return (key, value)
-        } else {
-            return nil
-        }
-    }
-}
-
 // Symbol Table implemented with binary search
 public class STBinarySearch<Key:Comparable, Value> : CollectionType, Indexable, SequenceType {
     
@@ -268,7 +247,7 @@ public class STBinarySearch<Key:Comparable, Value> : CollectionType, Indexable, 
     // return interator over keys in range 
     public func keys(lo:Key, hi:Key) -> AnyGenerator<(Key, Value)> {
         var i = self.rank(lo)
-        return anyGenerator{
+        return anyGenerator {
             if let key = self.select(i) where key <= hi {
                 let value = self.values[i++]
                 return (key,  value)
@@ -315,8 +294,17 @@ public class STBinarySearch<Key:Comparable, Value> : CollectionType, Indexable, 
         return (self.keys[position], self.values[position])
     }
     
-    public func generate() -> STBinarySearchGenerator<Key, Value> {
-        return STBinarySearchGenerator(st:self)
+    public func generate() -> AnyGenerator<(Key, Value)> {
+        var i = 0
+        return anyGenerator {
+            if i < self.count {
+                let key = self.keys[i]
+                let value = self.values[i++]
+                return (key, value)
+            } else {
+                return nil
+            }
+        }
     }
     
 }

@@ -100,6 +100,11 @@ public extension PriorityQ {
         }
     }
     
+    // SequenceType
+    public func generate() -> AnyGenerator<T> {
+        return anyGenerator{self.delRoot()}
+    }
+    
 }
 
 // Minimum Priority Queue
@@ -136,21 +141,6 @@ public final class MinPriorityQ<T:Comparable> : PriorityQ {
         return self.delRoot()
     }
 
-    // SequenceType
-    public func generate() -> MinPriorityQGenerator<T> {
-        return MinPriorityQGenerator(pq:self)
-    }
-
-}
-
-public struct MinPriorityQGenerator<T:Comparable> : GeneratorType {
-    let pq : MinPriorityQ<T>
-    public init(pq:MinPriorityQ<T>){
-        self.pq = pq
-    }
-    public func next() -> T? {
-        return self.pq.delRoot()
-    }
 }
 
 // Maximum Priority Queue
@@ -187,20 +177,6 @@ public class MaxPriorityQ<T:Comparable> : PriorityQ {
         return self.delRoot()
     }
     
-    public func generate() -> MaxPriorityQGenerator<T> {
-        return MaxPriorityQGenerator(pq:self)
-    }
-
-}
-
-public struct MaxPriorityQGenerator<T:Comparable> :GeneratorType {
-    let pq : MaxPriorityQ<T>
-    public init(pq:MaxPriorityQ<T>){
-        self.pq = pq
-    }
-    public func next() -> T? {
-        return pq.delRoot()
-    }
 }
 
 // FIFO Queue
@@ -228,20 +204,10 @@ public class Queue<T> : SequenceType {
     }
     
     // SequenceType
-    public func generate() -> QueueGenerator<T> {
-        return QueueGenerator(queue:self)
+    public func generate() -> AnyGenerator<T> {
+        return anyGenerator{self.dequeue()}
     }
 
-}
-
-public struct QueueGenerator<T> : GeneratorType {
-    let queue : Queue<T>
-    public init(queue:Queue<T>){
-        self.queue = queue
-    }
-    public func next() -> T? {
-        return self.queue.dequeue()
-    }
 }
 
 

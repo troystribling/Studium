@@ -10,7 +10,7 @@ import Foundation
 
 // node in linked list containing node item and reference to next node in list
 public class LinkedListNode<T> {
-    public let item : T
+    internal let item : T
     internal var next : LinkedListNode?
     public init(item:T, next:LinkedListNode?=nil) {
         self.item = item
@@ -86,29 +86,15 @@ public class LinkedList<T> : SequenceType {
     }
     
     // SequenceType
-    public func generate() -> LinkeListGenerator<T> {
-        return LinkeListGenerator(list:self)
-    }
-}
-
-// Linked list generator
-public struct LinkeListGenerator<T> : GeneratorType {
-
-    let list : LinkedList<T>
-    var currentNode : LinkedListNode<T>?
-    
-    public init(list:LinkedList<T>) {
-        self.list = list
-        self.currentNode = list.first
-    }
-    
-    public mutating func next() -> T? {
-        if let currentNode = self.currentNode {
-            let node = currentNode
-            self.currentNode = node.next
-            return node.item
-        } else {
-            return nil
+    public func generate() -> AnyGenerator<T> {
+        var currentNode : LinkedListNode<T>? = self.first
+        return anyGenerator {
+            if let node = currentNode {
+                currentNode = node.next
+                return node.item
+            } else {
+                return nil
+            }
         }
     }
 }

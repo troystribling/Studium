@@ -86,20 +86,16 @@ public struct Sort {
             for k in (lo...hi) {
                 // lower array exhausted
                 if i > mid {
-                    vals[k] = tmp[j]
-                    ++j
+                    vals[k] = tmp[j++]
                 // upper array exhausted
                 } else if j > hi {
-                    vals[k] = tmp[i]
-                    ++i
+                    vals[k] = tmp[i++]
                 // upper array larger
                 } else if tmp[j] > tmp[i] {
-                    vals[k] = tmp[i]
-                    ++i
+                    vals[k] = tmp[i++]
                 // lower array larger
                 } else {
-                    vals[k] = tmp[j]
-                    ++j
+                    vals[k] = tmp[j++]
                 }
             }
         }
@@ -204,13 +200,11 @@ public struct Sort {
             let pivot = vals[lo]
             while i <= gt {
                 if vals[i] < pivot {
-                    ArrayTools.swap(&vals, index:lt, withIndex:i)
-                    ++lt; ++i
+                    ArrayTools.swap(&vals, index:lt++, withIndex:i++)
                 } else if vals[i] > pivot {
-                    ArrayTools.swap(&vals, index:i, withIndex:gt)
-                    --gt
+                    ArrayTools.swap(&vals, index:i, withIndex:gt--)
                 } else {
-                    ++i
+                    i++
                 }
             }
             self.sort(&vals, lo:lo, hi:lt-1)
@@ -256,7 +250,7 @@ public struct Sort {
                 var ji = j-1, ki = k-1
                 // compare to largest child if two are present. if j > n there is only one child
                 if (j < n) && vals[ji] < vals[ji+1] {
-                    ++j; ++ji
+                    j++; ji++
                 }
                 if vals[ki] < vals[ji] {
                     // parent is less than child sink lower

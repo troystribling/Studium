@@ -33,19 +33,8 @@ public class Stack<T> : SequenceType {
     }
     
     // SequenceType
-    public func generate() -> StackGenerator<T> {
-        return StackGenerator(stack:self)
+    public func generate() -> AnyGenerator<T> {
+        return anyGenerator{self.pop()}
     }
     
 }
-
-public struct StackGenerator<T> : GeneratorType {
-    let stack : Stack<T>
-    public init(stack:Stack<T>){
-        self.stack = stack
-    }
-    public func next() -> T? {
-        return self.stack.pop()
-    }
-}
-

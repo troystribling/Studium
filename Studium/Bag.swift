@@ -32,26 +32,14 @@ public class Bag<T> : SequenceType {
     }
     
     // SequenceType
-    public func generate() -> BagGenerator<T> {
-        return BagGenerator<T>(bag:self)
-    }
-    
-}
-
-public struct BagGenerator<T> : GeneratorType {
-    
-    private let bag : Bag<T>
-    private var index = 0
-    
-    init(bag:Bag<T>) {
-        self.bag = bag
-    }
-    
-    public mutating func next() -> T? {
-        if index < self.bag.count {
-            return self.bag.vals[++index - 1]
-        } else {
-            return nil
+    public func generate() -> AnyGenerator<T> {
+        var index = 0
+        return anyGenerator{
+            if index < self.count {
+                return self.vals[index++]
+            } else {
+                return nil
+            }
         }
     }
     
