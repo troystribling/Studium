@@ -62,6 +62,7 @@
 		05570E6C1B5193760085F5ED /* Bag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bag.swift; sourceTree = "<group>"; };
 		056AC7D41B3788B200251679 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		0570BAA91B65466B0033495F /* BinarySearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
+		0570BAAC1B67D2BD0033495F /* BinarySerachTree.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BinarySerachTree.playground; sourceTree = "<group>"; };
 		0592DD891B4433EF006AA0A5 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		059AE8C61B37360900D5C16A /* Studium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Studium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		059AE8CA1B37360900D5C16A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 			children = (
 				054721E81B51A34900BDD85A /* Bag.playground */,
 				05E067CB1B5F5DF200B52C66 /* BinarySearch.playground */,
+				0570BAAC1B67D2BD0033495F /* BinarySerachTree.playground */,
 				05E067CA1B5C3D8900B52C66 /* LinkedList.playground */,
 				05D07D5A1B51C58D0036187D /* Queue.playground */,
 				05D07D5B1B51C58D0036187D /* Sort.playground */,

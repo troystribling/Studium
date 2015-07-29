@@ -165,7 +165,7 @@ public class STBinarySearch<Key:Comparable, Value> : CollectionType, Indexable, 
         }
     }
 
-    // return smallest key greater than or equal to key
+    // return the ceiling of the specified key defined as smallest key greater than or equal to key
     public func ceiling(key:Key) -> Key? {
         // rank returns the number of keys in self.keys less than key
         let i = self.rank(key)
@@ -178,7 +178,7 @@ public class STBinarySearch<Key:Comparable, Value> : CollectionType, Indexable, 
         }
     }
     
-    // return largest key less than or equal to key
+    // return the floor of the specified key defined as the largest key less than or equal to key
     public func floor(key:Key) -> Key? {
         // rank returns the number of keys in self.keys less than key
         let i = self.rank(key)

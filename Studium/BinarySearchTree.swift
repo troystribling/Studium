@@ -36,18 +36,80 @@ public class BSTNode<Key:Comparable, Value> {
     }
 }
 
+enum BSTDirection {
+    case Left, Right
+}
+
 public class BST<Key:Comparable, Value> {
     
     private var root : BSTNode<Key, Value>?
     
-    // return the count of nodes in tree which will be the root node count
-    public var count : Int {
-        if let root = self.root {
-            return root.count
+    public init(){}
+    
+    // return the minimum key
+    public func minKey() -> Key? {
+     return self.minKey(self.root)
+    }
+    
+    // the miminum key will be the key of the left most leaf node in the tree since for each node
+    // the left child has the smaller key
+    public func minKey(node:BSTNode<Key, Value>?) -> Key? {
+        guard let node = node else {
+            return nil
+        }
+        if let left = node.left {
+            return self.minKey(left)
         } else {
-            return 0
+            return node.key
         }
     }
+    
+    // return the maximum key will be the key of the right most leaf node in the tree since 
+    // for each node the right child has the larger key
+    public func maxKey() -> Key? {
+        return self.maxKey(self.root)
+    }
+    
+    // the maximum key will be the righ most
+    public func maxKey(node:BSTNode<Key, Value>?) -> Key? {
+        guard let node = node else {
+            return nil
+        }
+        if let right = node.right {
+            return self.maxKey(right)
+        } else {
+            return node.key
+        }
+    }
+    
+    // return the ceiling of the specified key defined as the smallest key 
+    // greater than of equal to key
+//    public func ceiling(key:Key) -> Key? {
+//        guard let root = self.root else {
+//            return nil
+//        }
+//        if key < root.key {
+//            return self.ceiling(self.root, key:key, direction:BSTDirection.Right)
+//        } else if key > root.key {
+//            return self.ceiling(self.root, key:key, direction:BSTDirection.Left)
+//        } else {
+//            return root.key
+//        }
+//    }
+    
+    // traverse the tree looking for the ceiling.
+//    public func ceiling(node:BSTNode<Key, Value>?, key:Key, direction:BSTDirection) -> Key? {
+//        guard let node = node else {
+//            return nil
+//        }
+//        if key > node.key {
+//            return self.ceiling(node.right, key:key)
+//        } else if key < node.key {
+//            return self.ceiling(node.left, key:key)
+//        } else {
+//            return node.key
+//        }
+//    }
     
     // return the count of the specified nodes subtree
     private func count(node:BSTNode<Key, Value>?) -> Int {
@@ -88,35 +150,38 @@ public class BST<Key:Comparable, Value> {
     // update the value of the node with specified key. If no node has key create
     // a new node with specified key and value.
     public func updateValue(key:Key, value:Value) -> Value? {
-        self.root = self.updateValue(self.root, key:key, value:value)
-        return nil
+        let (node, value) = self.updateValue(self.root, key:key, value:value)
+        self.root = node
+        return value
     }
     
     // update the the value of the specified node if key = node.key otherwise search deeper in the tree.
     // if no node with with key is found create a new node
-    public func updateValue(node:BSTNode<Key, Value>?, key:Key, value:Value) -> BSTNode<Key, Value>? {
+    public func updateValue(node:BSTNode<Key, Value>?, key:Key, value:Value) -> (BSTNode<Key, Value>?, Value?) {
         guard let node = node else {
             print("creating node: key=\(key), value=\(value)")
-            return BSTNode(key:key, value:value, count:1)
+            return (BSTNode(key:key, value:value, count:1), nil)
         }
-        // check the left child if key is less than node.key. If a new node is created assign it to the left child.
+        // check the left child if key is less than node.key and reset child associations to pick up  changes
         print("key=\(key), node.key=\(node.key), node.value=\(node.value)")
+        let oldValue : Value?
         if key < node.key {
             print("key < node.key go left")
-            node.left = self.updateValue(node.left, key:key, value:value)
-        // check the right child if key the greater than node.key. If a new node is created assign it to the right child
+            (node.left, oldValue) = self.updateValue(node.left, key:key, value:value)
+        // check the right child if key the greater than node.key and reset child associations to pick up changes
         } else if key > node.key {
             print("key > node.key go right")
-            node.right = self.updateValue(node.right, key:key, value:value)
+            (node.right, oldValue) = self.updateValue(node.right, key:key, value:value)
         // node has specified key. update value
         } else {
             print("key==node.key")
+            oldValue = node.value
             node.value = value
         }
         // update node count if node is added to subtree
         node.count = self.count(node.left) + self.count(node.right)
         print("updated size: \(node.count)")
-        return node
+        return (node, oldValue)
     }
     
     // remove the node with the specified key and return the value of the node if found.
@@ -124,4 +189,19 @@ public class BST<Key:Comparable, Value> {
     public func removeValueForKey(key:Key) -> Value? {
         return nil
     }
+
+    // CollectionType
+    // return the count of nodes in tree which will be the root node count
+    public var count : Int {
+        if let root = self.root {
+            return root.count
+        } else {
+            return 0
+        }
+    }
+    
+    public var isEmpty : Bool {
+        return self.count == 0
+    }
+
 }
