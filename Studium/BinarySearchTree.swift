@@ -36,7 +36,7 @@ public class BSTNode<Key:Comparable, Value> {
     }
 }
 
-enum BSTDirection {
+public enum BSTDirection {
     case Left, Right
 }
 
@@ -83,33 +83,63 @@ public class BST<Key:Comparable, Value> {
     }
     
     // return the ceiling of the specified key defined as the smallest key 
-    // greater than of equal to key
-//    public func ceiling(key:Key) -> Key? {
-//        guard let root = self.root else {
-//            return nil
-//        }
-//        if key < root.key {
-//            return self.ceiling(self.root, key:key, direction:BSTDirection.Right)
-//        } else if key > root.key {
-//            return self.ceiling(self.root, key:key, direction:BSTDirection.Left)
-//        } else {
-//            return root.key
-//        }
-//    }
+    // greater than or equal to key
+    public func ceiling(key:Key) -> Key? {
+        guard let root = self.root else {
+            return nil
+        }
+        // if key is smaller than root key ceiling is on the left side of tree
+        if key < root.key {
+            return self.ceiling(self.root, key:key, direction:BSTDirection.Left)
+        // if key is larger than root key ceiling is on the right side of tree
+        } else if key > root.key {
+            return self.ceiling(self.root, key:key, direction:BSTDirection.Right)
+        // if key is equal root root key is ceiling
+        } else {
+            return root.key
+        }
+    }
     
     // traverse the tree looking for the ceiling.
-//    public func ceiling(node:BSTNode<Key, Value>?, key:Key, direction:BSTDirection) -> Key? {
-//        guard let node = node else {
-//            return nil
-//        }
-//        if key > node.key {
-//            return self.ceiling(node.right, key:key)
-//        } else if key < node.key {
-//            return self.ceiling(node.left, key:key)
-//        } else {
-//            return node.key
-//        }
-//    }
+    public func ceiling(node:BSTNode<Key, Value>?, key:Key, direction:BSTDirection) -> Key? {
+        guard let node = node else {
+            return nil
+        }
+        switch direction {
+        // traversing left side of tree
+        case BSTDirection.Left:
+            // key is smaller than node key go deeper left in tree
+            if key < node.key {
+                return self.ceiling(node.left, key:key, direction:BSTDirection.Left)
+            // key is larger may have found ceiling
+            } else if key > node.key {
+                if let right = node.right {
+                    // key is larger still ceiling is deeper in right subtree
+                    if key > right.key {
+                        return self.ceiling(node.right, key:key, direction:BSTDirection.Right)
+                    // ceiling is right key
+                    } else {
+                        return right.key
+                    }
+                // there is no ceiling in symbol table
+                } else {
+                    return nil
+                }
+            } else {
+                return node.key
+            }
+        case BSTDirection.Right:
+            // key is larger than node key
+            if key > node.key {
+                
+                return self.ceiling(node.right, key:key, direction:BSTDirection.Right)
+            } else if key < node.key {
+                return nil
+            } else {
+                return node.key
+            }
+        }
+    }
     
     // return the count of the specified nodes subtree
     private func count(node:BSTNode<Key, Value>?) -> Int {
