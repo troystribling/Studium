@@ -103,39 +103,73 @@ public class BST<Key:Comparable, Value> {
     // traverse the tree looking for the ceiling.
     public func ceiling(node:BSTNode<Key, Value>?, key:Key, direction:BSTDirection) -> Key? {
         guard let node = node else {
+            print("node is nil")
             return nil
         }
+        print("key=\(key), node.key=\(node.key)")
         switch direction {
         // traversing left side of tree
         case BSTDirection.Left:
-            // key is smaller than node key go deeper left in tree
+            print("BSTDirection.Left")
+            // key is still smaller than node key go deeper left in tree
             if key < node.key {
+                print("go deeper to left key=\(key) < node.key=\(node.key)")
                 return self.ceiling(node.left, key:key, direction:BSTDirection.Left)
             // key is larger may have found ceiling
             } else if key > node.key {
+                print("key=\(key) > node.key=\(node.key)")
                 if let right = node.right {
                     // key is larger still ceiling is deeper in right subtree
                     if key > right.key {
+                        print("go deeper to right key = \(key) > right.key = \(right.key)")
                         return self.ceiling(node.right, key:key, direction:BSTDirection.Right)
-                    // ceiling is right key
+                    // key is less tahn are qual to right.key ceiling is right key
                     } else {
+                        print("ceiling is right.key = \(right.key)")
                         return right.key
                     }
-                // there is no ceiling in symbol table
+                // cannot go deeper node.key is ceiling
                 } else {
-                    return nil
+                    print("right child is nil ceiling is node.key = \(node.key)")
+                    return node.key
                 }
+            // key and node key are equal
             } else {
+                print("ceiling is node.key key=\(key) == node.key=\(node.key)")
                 return node.key
             }
+        // traversing right side of tree
         case BSTDirection.Right:
-            // key is larger than node key
+            print("BSTDirection.Right")
+            // key is larger still go deeper in right
             if key > node.key {
-                
+                print("go deeper to right key=\(key) > node.key=\(node.key)")
                 return self.ceiling(node.right, key:key, direction:BSTDirection.Right)
+            // key is smaller may have found ceiling
             } else if key < node.key {
-                return nil
+                print("key=\(key) < node.key=\(node.key)")
+                if let left = node.left {
+                    // key is smaller still ceiling is deeper in left subtree
+                    if key < left.key {
+                        print("go deeper to left key = \(key) < left.key = \(left.key)")
+                        return self.ceiling(node.left, key:key, direction:BSTDirection.Left)
+                    // key is greater than left.key node.key is ceiling
+                    } else if key > left.key {
+                        print("ceiling is node.key key = \(key) > left.key = \(left.key)")
+                        return node.key
+                    // key equals left.key key is ceiling
+                    } else {
+                        print("ceiling is left.key = \(left.key)")
+                        return left.key
+                    }
+                // cannot go deeper node.key is ceiling
+                } else {
+                    print("right child is nil ceiling is node.key = \(node.key)")
+                    return node.key
+                }
+            // key and node key are equal
             } else {
+                print("ceiling is node.key key=\(key) == node.key=\(node.key)")
                 return node.key
             }
         }
