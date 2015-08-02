@@ -16,7 +16,7 @@ import Foundation
 // than the node key.
 
 // Binary Serach Tree Node
-public class BSTNode<Key:Comparable, Value> {
+public class BSTNode<Key:Comparable, Value> : CustomStringConvertible {
     
     // node key
     internal var key    : Key
@@ -34,13 +34,18 @@ public class BSTNode<Key:Comparable, Value> {
         self.value = value
         self.count = count
     }
+    
+    // CustomStringConvertible
+    public var description: String {
+        return "\(self.key), \(self.value), \(self.count)"
+    }
 }
 
 public enum BSTDirection {
     case Left, Right
 }
 
-public class BST<Key:Comparable, Value> {
+public class BST<Key:Comparable, Value>  {
     
     private var root : BSTNode<Key, Value>?
     
@@ -48,7 +53,7 @@ public class BST<Key:Comparable, Value> {
     
     // return the minimum key
     public func minKey() -> Key? {
-     return self.minKey(self.root)
+        return self.minKey(self.root)
     }
     
     // the miminum key will be the key of the left most leaf node in the tree since for each node
@@ -136,6 +141,65 @@ public class BST<Key:Comparable, Value> {
         }
     }
     
+    // return the key with the specified rank. rank is defined as the number of
+    // keys smaller than a given key when the keys are ordered.
+    public func select(rank:Int) -> Key? {
+        guard rank <= self.count else {
+            return nil
+        }
+        return self.select(self.root, rank:rank)
+    }
+    
+    // traverse the tree looking for key with specified rank
+    private func select(node:BSTNode<Key, Value>?, rank:Int) -> Key? {
+        guard let node = node else {
+            return nil
+        }
+        // get left subtree size
+        let size = self.count(node.left)
+        // if the left subtree is larger the key is to the left
+        if size > rank {
+            return self.select(node.left, rank:rank)
+        // if the left subtree is smaller than rank so key will be in right subtree. rank of key relative to 
+        // right subtree is rank - size 1
+        } else if size < rank {
+            return self.select(node.right, rank:rank - size - 1)
+        // subtree rooted at node has size equal to rank so key with rank is node.key. This case occurs for
+        // leaf nodes where size = 0 and nodes with only a left child where size = 1
+        } else {
+            return node.key
+        }
+    }
+    
+    // return the rank of the specified key. rank is defined as the number of keys less than a given
+    // key when the keys are ordered
+    public func rank(key:Key) -> Int {
+        return self.rank(self.root, key:key)
+    }
+    
+    // traverse the tree to determine the rank of he given key
+    private func rank(node:BSTNode<Key, Value>?, key:Key) -> Int {
+        guard let node = node else {
+            return 0
+        }
+        // get left subtree size
+        let size = self.count(node.left)
+        
+        // if key is smaller than node.key
+        if key < node.key {
+            let left_size = self.rank(node.left, key:key)
+            return left_size
+        // if key is larger than node.key
+        } else if key > node.key {
+            let right_size = self.rank(node.right, key:key)
+            return size + 1 + right_size
+        // if key == node.key the rank will be the size of the left tree
+        } else {
+            return size
+        }
+        
+    }
+    
     // return the count of the specified nodes subtree
     private func count(node:BSTNode<Key, Value>?) -> Int {
         if let node = node {
@@ -145,6 +209,7 @@ public class BST<Key:Comparable, Value> {
         }
     }
     
+    
     // return the value of the node with the specified key
     public func getValueForKey(key:Key) -> Value? {
         return self.getValueForKey(self.root, key:key)
@@ -153,21 +218,16 @@ public class BST<Key:Comparable, Value> {
     // return the value of the specified node if node.key = key otherwise go deeper in the tree
     private func getValueForKey(node:BSTNode<Key, Value>?, key:Key) -> Value? {
         guard let node = node else {
-            print("node is nil: key=\(key)")
             return nil
         }
-        print("key=\(key), node.key=\(node.key), node.value=\(node.value)")
         // check the left child if key is less than node.key
         if key < node.key {
-            print("key < node.key go left")
             return self.getValueForKey(node.left, key:key)
         // check the right child if key is greater than node.key
         } else if key > node.key {
-            print("key > node.key go right")
             return self.getValueForKey(node.right, key:key)
         } else {
         // node has specified key return node value
-            print("key==node.key")
             return node.value
         }
     }
@@ -184,28 +244,22 @@ public class BST<Key:Comparable, Value> {
     // if no node with with key is found create a new node
     private func updateValue(node:BSTNode<Key, Value>?, key:Key, value:Value) -> (BSTNode<Key, Value>?, Value?) {
         guard let node = node else {
-            print("creating node: key=\(key), value=\(value)")
             return (BSTNode(key:key, value:value, count:1), nil)
         }
         // check the left child if key is less than node.key and reset child associations to pick up  changes
-        print("key=\(key), node.key=\(node.key), node.value=\(node.value)")
         let oldValue : Value?
         if key < node.key {
-            print("key < node.key go left")
             (node.left, oldValue) = self.updateValue(node.left, key:key, value:value)
         // check the right child if key the greater than node.key and reset child associations to pick up changes
         } else if key > node.key {
-            print("key > node.key go right")
             (node.right, oldValue) = self.updateValue(node.right, key:key, value:value)
         // node has specified key. update value
         } else {
-            print("key==node.key")
             oldValue = node.value
             node.value = value
         }
         // update node count if node is added to subtree
-        node.count = self.count(node.left) + self.count(node.right)
-        print("updated size: \(node.count)")
+        node.count = self.count(node.left) + self.count(node.right) + 1
         return (node, oldValue)
     }
     
@@ -215,6 +269,24 @@ public class BST<Key:Comparable, Value> {
         return nil
     }
 
+    // print nodes in order
+    public func printNodes() {
+        self.printNodes(self.root)
+    }
+    
+    // traverse tree from left and print node
+    private func printNodes(node:BSTNode<Key, Value>?) {
+        guard let node = node else {
+            return
+        }
+        // go left until left leaf is reached.
+        self.printNodes(node.left)
+        // print node
+        print(node)
+        // go right
+        self.printNodes(node.right)
+    }
+    
     // CollectionType
     // return the count of nodes in tree which will be the root node count
     public var count : Int {
