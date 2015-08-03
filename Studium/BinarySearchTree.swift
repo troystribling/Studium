@@ -45,7 +45,7 @@ public enum BSTDirection {
     case Left, Right
 }
 
-public class BST<Key:Comparable, Value>  {
+public class BST<Key:Comparable, Value> : SequenceType  {
     
     private var root : BSTNode<Key, Value>?
     
@@ -306,10 +306,29 @@ public class BST<Key:Comparable, Value>  {
     
     // remove the node with the specified key and return the value of the node if found.
     // return nil if no node with key is found.
-    public func removeValueForKey(key:Key) -> Value? {
-        return nil
+    public func removeValueForKey(key:Key) {
+        self.removeValueForKey(self.root, key:key)
     }
 
+    private func removeValueForKey(node:BSTNode<Key, Value>?, key:Key) -> BSTNode<Key, Value>? {
+        guard let node = node else {
+            return nil
+        }
+        if key < node.key {
+            node.left = self.removeValueForKey(node.left, key:key)
+        } else if key > node.key {
+            node.right = self.removeValueForKey(node.right, key:key)
+        } else {
+            if node.right == nil {
+                return node.left
+            }
+            if node.left == nil {
+                return node.right
+            }
+        }
+        return node
+    }
+    
     // print nodes in order
     public func printNodes() {
         self.printNodes(self.root)
@@ -338,8 +357,11 @@ public class BST<Key:Comparable, Value>  {
         guard let node = node else {
             return 0
         }
+        print("node.key=\(node.key)")
         let left_height = self.maxHeight(node.left)
+        print("node.key=\(node.key), left_height=\(left_height + 1)")
         let right_height = self.maxHeight(node.right)
+        print("node.key=\(node.key), left_height=\(left_height + 1), right_height=\(right_height + 1)")
         return left_height > right_height ? (left_height + 1) : (right_height + 1)
     }
     
@@ -357,4 +379,10 @@ public class BST<Key:Comparable, Value>  {
         return self.count == 0
     }
 
+    public func generate() -> AnyGenerator<(Key, Value)> {
+        return anyGenerator {
+            return nil
+        }
+    }
+    
 }
