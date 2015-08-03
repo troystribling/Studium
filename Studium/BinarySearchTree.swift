@@ -209,7 +209,6 @@ public class BST<Key:Comparable, Value>  {
         }
     }
     
-    
     // return the value of the node with the specified key
     public func getValueForKey(key:Key) -> Value? {
         return self.getValueForKey(self.root, key:key)
@@ -263,6 +262,48 @@ public class BST<Key:Comparable, Value>  {
         return (node, oldValue)
     }
     
+    // remove the minimum value
+    public func removeMinValue() {
+        removeMinValue(self.root)
+    }
+    
+    // traverse tree to minimum, the left most node, value and remove
+    private func removeMinValue(node:BSTNode<Key, Value>?) -> BSTNode<Key, Value>? {
+        guard let node = node else {
+            return nil
+        }
+        // if left node is nil minimum value has been reached return right node
+        guard let left = node.left else {
+            return node.right
+        }
+        // to remove the node assign the right node of the removed node to the left node of the parent
+        // this preserves the binary search tree constaint
+        node.left = self.removeMinValue(left)
+        node.count = self.count(left) + self.count(node.right)
+        return node
+    }
+    
+    // remove the maximum value
+    public func removeMaxValue() {
+        self.removeMaxValue(self.root)
+    }
+    
+    // traverse tree to maximum, the right most node, and remove
+    private func removeMaxValue(node:BSTNode<Key, Value>?) -> BSTNode<Key, Value>? {
+        guard let node = node else {
+            return nil
+        }
+        // if right node is nil maximum value has been reached return the left node
+        guard let right = node.right else {
+            return node.left
+        }
+        // to remove the node assign the left node of the removed node to the right node of the parent
+        // this preserves the binary serach tree constaint
+        node.right = self.removeMaxValue(right)
+        node.count = self.count(right) + self.count(node.left)
+        return node
+    }
+    
     // remove the node with the specified key and return the value of the node if found.
     // return nil if no node with key is found.
     public func removeValueForKey(key:Key) -> Value? {
@@ -285,6 +326,21 @@ public class BST<Key:Comparable, Value>  {
         print(node)
         // go right
         self.printNodes(node.right)
+    }
+    
+    // return the maximum tree height
+    public func maxHeight() -> Int {
+        return self.maxHeight(self.root)
+    }
+    
+    // traverse tree to determine maximum height
+    private func maxHeight(node:BSTNode<Key, Value>?) -> Int {
+        guard let node = node else {
+            return 0
+        }
+        let left_height = self.maxHeight(node.left)
+        let right_height = self.maxHeight(node.right)
+        return left_height > right_height ? (left_height + 1) : (right_height + 1)
     }
     
     // CollectionType

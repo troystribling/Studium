@@ -55,7 +55,6 @@
 		05449D591B52F6F900417A0C /* tinyUF.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tinyUF.txt; sourceTree = "<group>"; };
 		05449D5D1B533C4500417A0C /* SearchTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTools.swift; sourceTree = "<group>"; };
 		05449D611B53460C00417A0C /* UnionFind.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = UnionFind.playground; sourceTree = "<group>"; };
-		054721E81B51A34900BDD85A /* Bag.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Bag.playground; sourceTree = "<group>"; };
 		054CB4381B484E6200953832 /* QueueTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueueTools.swift; sourceTree = "<group>"; };
 		054CB43A1B484F4800953832 /* Stack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		054CB4411B486C0600953832 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		056AC7D41B3788B200251679 /* Sort.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sort.swift; sourceTree = "<group>"; };
 		0570BAA91B65466B0033495F /* BinarySearch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinarySearch.swift; sourceTree = "<group>"; };
 		0570BAAC1B67D2BD0033495F /* BinarySerachTree.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = BinarySerachTree.playground; sourceTree = "<group>"; };
+		057930F51B6EEE8F00E73082 /* Bag.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Bag.playground; sourceTree = "<group>"; };
 		0592DD891B4433EF006AA0A5 /* Queue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		059AE8C61B37360900D5C16A /* Studium.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Studium.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		059AE8CA1B37360900D5C16A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 		059AE8BC1B37360900D5C16A = {
 			isa = PBXGroup;
 			children = (
-				054721E81B51A34900BDD85A /* Bag.playground */,
+				057930F51B6EEE8F00E73082 /* Bag.playground */,
 				05E067CB1B5F5DF200B52C66 /* BinarySearch.playground */,
 				0570BAAC1B67D2BD0033495F /* BinarySerachTree.playground */,
 				05E067CA1B5C3D8900B52C66 /* LinkedList.playground */,

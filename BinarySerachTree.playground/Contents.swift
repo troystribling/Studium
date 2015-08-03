@@ -25,4 +25,11 @@ st.printNodes()
 
 print("\n")
 st.select(6)
-st.rank(11)
+st.rank(30)
+st.maxHeight()
+st.removeMinValue()
+st.removeMaxValue()
+st.printNodes()
+
+
+
