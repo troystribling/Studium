@@ -12,6 +12,9 @@ st.updateValue(7, value:"William")
 st.updateValue(3, value:"San Francisco")
 st.updateValue(20, value:"Mission")
 st.updateValue(15, value:"gnos.us")
+st.updateValue(14, value:"simple futures")
+st.updateValue(17, value:"future location")
+st.updateValue(18, value:"zgomot")
 st.updateValue(30, value:"bluecap")
 st.count
 
@@ -27,6 +30,7 @@ print("\n")
 st.select(6)
 st.rank(30)
 st.maxHeight()
+
 st.removeMinValue()
 st.removeMaxValue()
 st.printNodes()

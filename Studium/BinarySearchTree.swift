@@ -53,37 +53,37 @@ public class BST<Key:Comparable, Value> : SequenceType  {
     
     // return the minimum key
     public func minKey() -> Key? {
-        return self.minKey(self.root)
+        return self.minNode(self.root)?.key
     }
     
     // the miminum key will be the key of the left most leaf node in the tree since for each node
     // the left child has the smaller key
-    private func minKey(node:BSTNode<Key, Value>?) -> Key? {
+    private func minNode(node:BSTNode<Key, Value>?) -> BSTNode<Key, Value>? {
         guard let node = node else {
             return nil
         }
         if let left = node.left {
-            return self.minKey(left)
+            return self.minNode(left)
         } else {
-            return node.key
+            return node
         }
     }
     
     // return the maximum key will be the key of the right most leaf node in the tree since 
     // for each node the right child has the larger key
     public func maxKey() -> Key? {
-        return self.maxKey(self.root)
+        return self.maxNode(self.root)?.key
     }
     
     // the maximum key will be the righ most
-    private func maxKey(node:BSTNode<Key, Value>?) -> Key? {
+    private func maxNode(node:BSTNode<Key, Value>?) -> BSTNode<Key, Value>? {
         guard let node = node else {
             return nil
         }
         if let right = node.right {
-            return self.maxKey(right)
+            return self.maxNode(right)
         } else {
-            return node.key
+            return node
         }
     }
     
@@ -316,8 +316,10 @@ public class BST<Key:Comparable, Value> : SequenceType  {
         }
         if key < node.key {
             node.left = self.removeValueForKey(node.left, key:key)
+            return node
         } else if key > node.key {
             node.right = self.removeValueForKey(node.right, key:key)
+            return node
         } else {
             if node.right == nil {
                 return node.left
@@ -325,8 +327,14 @@ public class BST<Key:Comparable, Value> : SequenceType  {
             if node.left == nil {
                 return node.right
             }
+            if let replacement_node = self.minNode(node.right) {
+                replacement_node.right = self.removeMinValue(node.right)
+                replacement_node.left = node.left
+                return replacement_node
+            } else {
+                return nil
+            }
         }
-        return node
     }
     
     // print nodes in order
