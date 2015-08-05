@@ -151,7 +151,7 @@ public final class MinPriorityQ<T:Comparable> : PriorityQ {
 // 2*k + 1 = right child node number
 // j = child node number
 // j/2 = parent node number
-// val[k] >= val2*k] && val[k] >= val[2k+1]
+// val[k] >= val[2*k] && val[k] >= val[2k+1]
 // [10,9,6,2,1,3,2]
 // vals[0] is largest value
 public class MaxPriorityQ<T:Comparable> : PriorityQ {

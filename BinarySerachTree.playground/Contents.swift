@@ -16,6 +16,7 @@ st.updateValue(14, value:"simple futures")
 st.updateValue(17, value:"future location")
 st.updateValue(18, value:"zgomot")
 st.updateValue(30, value:"bluecap")
+st.updateValue(22, value:"agent xmpp")
 st.count
 
 st.minKey()

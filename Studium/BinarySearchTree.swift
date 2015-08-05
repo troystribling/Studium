@@ -49,6 +49,10 @@ public class BST<Key:Comparable, Value> : SequenceType  {
     
     private var root : BSTNode<Key, Value>?
     
+    public init(root:BSTNode<Key, Value>) {
+            self.root = root
+    }
+    
     public init(){}
     
     // return the minimum key
@@ -307,23 +311,33 @@ public class BST<Key:Comparable, Value> : SequenceType  {
     // remove the node with the specified key and return the value of the node if found.
     // return nil if no node with key is found.
     public func removeValueForKey(key:Key) {
-        self.removeValueForKey(self.root, key:key)
+        self.removeValueForKey(self.root , key:key)
     }
 
     private func removeValueForKey(node:BSTNode<Key, Value>?, key:Key) -> BSTNode<Key, Value>? {
         guard let node = node else {
             return nil
         }
+        print("key=\(key), node.key=\(node.key)")
+        // key is smaller than node.key look deeper left in tree for node to delete. if left node is to be deleted
+        // it is removed ressigning left node reference
         if key < node.key {
+            print("key < node.key go left")
             node.left = self.removeValueForKey(node.left, key:key)
             return node
+        // key is larger than node.key look deeper right in ytree for node to delete
         } else if key > node.key {
+            print("key > node.key go right")
             node.right = self.removeValueForKey(node.right, key:key)
             return node
+        // node with key found remove
         } else {
+            // node has no right node it is a subtree maximum. node is removed by assigning removed node left
+            // to parent node right. this change perserves binray serach tree order
             if node.right == nil {
                 return node.left
             }
+            // node has no left node it is a subtree minimum. 
             if node.left == nil {
                 return node.right
             }
@@ -339,20 +353,26 @@ public class BST<Key:Comparable, Value> : SequenceType  {
     
     // print nodes in order
     public func printNodes() {
-        self.printNodes(self.root)
+        self.sortOrderIterate {node in
+            print(node)
+        }
     }
     
-    // traverse tree from left and print node
-    private func printNodes(node:BSTNode<Key, Value>?) {
+    // traverse tree in sort order and do something
+    public func sortOrderIterate(f:BSTNode<Key, Value> -> Void) {
+        self.sortOrderIterate(self.root, f:f)
+    }
+    
+    public func sortOrderIterate(node:BSTNode<Key, Value>?, f:BSTNode<Key, Value> -> Void) {
         guard let node = node else {
             return
         }
-        // go left until left leaf is reached.
-        self.printNodes(node.left)
-        // print node
-        print(node)
+        // go left until subtree minimum is reached
+        self.sortOrderIterate(node.left, f:f)
+        // do thing
+        f(node)
         // go right
-        self.printNodes(node.right)
+        self.sortOrderIterate(node.right, f:f)
     }
     
     // return the maximum tree height
@@ -365,11 +385,8 @@ public class BST<Key:Comparable, Value> : SequenceType  {
         guard let node = node else {
             return 0
         }
-        print("node.key=\(node.key)")
         let left_height = self.maxHeight(node.left)
-        print("node.key=\(node.key), left_height=\(left_height + 1)")
         let right_height = self.maxHeight(node.right)
-        print("node.key=\(node.key), left_height=\(left_height + 1), right_height=\(right_height + 1)")
         return left_height > right_height ? (left_height + 1) : (right_height + 1)
     }
     
