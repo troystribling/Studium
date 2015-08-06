@@ -25,7 +25,11 @@ st.maxKey()
 st.ceiling(20)
 st.floor(16)
 
-st.printNodes()
+print("\nSort Order")
+st.printSortOrder()
+
+print("\nPost Order")
+st.printPostOrder()
 
 print("\n")
 st.select(6)
@@ -34,7 +38,7 @@ st.maxHeight()
 
 st.removeMinValue()
 st.removeMaxValue()
-st.printNodes()
+st.printSortOrder()
 
 
 
