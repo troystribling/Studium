@@ -278,7 +278,6 @@ public class BST<Key:Comparable, Value> : SequenceType  {
         }
         // if left node is nil minimum value has been reached return right node
         guard let left = node.left else {
-            print("node.key=\(node.key) has no left")
             return node.right
         }
         // to remove the node assign the right node of the removed node to the left node of the parent
@@ -319,16 +318,13 @@ public class BST<Key:Comparable, Value> : SequenceType  {
         guard let node = node else {
             return nil
         }
-        print("key=\(key), node.key=\(node.key)")
         // key is smaller than node.key look deeper left in tree for node to delete. if left node is to be deleted
         // it is removed ressigning left node reference
         if key < node.key {
-            print("key < node.key go left")
             node.left = self.removeValueForKey(node.left, key:key)
             return node
         // key is larger than node.key look deeper right in ytree for node to delete
         } else if key > node.key {
-            print("key > node.key go right")
             node.right = self.removeValueForKey(node.right, key:key)
             return node
         // node with key found remove
@@ -358,8 +354,8 @@ public class BST<Key:Comparable, Value> : SequenceType  {
     }
     
     // print nodes in sort order
-    public func printSortOrder() {
-        self.sortOrderIterate {node in
+    public func printInOrder() {
+        self.inOrderIterate {node in
             print(node)
         }
     }
@@ -371,8 +367,29 @@ public class BST<Key:Comparable, Value> : SequenceType  {
         }
     }
     
+    // print node in preorder
+    public func printPreOrder() {
+        self.preOrderIterate {node in
+            print(node)
+        }
+    }
+    
+    // print in level order
+    public func printLevelOrder() {
+        self.levelOrderInterate {node in
+            print(node)
+        }
+    }
+    
+    // print in depth order
+    public func printDepthOrder() {
+        self.depthOrderIterate {node in
+            print(node)
+        }
+    }
+    
     // traverse tree in sort order and do something
-    public func sortOrderIterate(f:BSTNode<Key, Value> -> Void) {
+    public func inOrderIterate(f:BSTNode<Key, Value> -> Void) {
         self.sortOrderIterate(self.root, f:f)
     }
     
@@ -400,6 +417,54 @@ public class BST<Key:Comparable, Value> : SequenceType  {
         self.postOrderIterate(node.left, f:f)
         self.postOrderIterate(node.right, f:f)
         f(node)
+    }
+    
+    // traverse tree in pre order
+    public func preOrderIterate(f:BSTNode<Key, Value> -> Void) {
+        return self.preOrderInterate(self.root, f:f)
+    }
+    
+    private func preOrderInterate(node:BSTNode<Key, Value>?, f:BSTNode<Key, Value> -> Void) {
+        guard let node = node else {
+            return
+        }
+        f(node)
+        self.preOrderInterate(node.left, f:f)
+        self.preOrderInterate(node.right, f:f)
+    }
+    
+    // travserse tree in level order
+    public func levelOrderInterate(f:BSTNode<Key, Value> -> Void) {
+        let q = Queue<BSTNode<Key, Value>>()
+        q.enqueue(self.root)
+        self.levelOrderIterate(q, f:f)
+    }
+
+    public func levelOrderIterate(q:Queue<BSTNode<Key, Value>>, f:BSTNode<Key, Value> -> Void) {
+        guard let node = q.dequeue() else {
+            return
+        }
+        f(node)
+        q.enqueue(node.left)
+        q.enqueue(node.right)
+        self.levelOrderIterate(q, f:f)
+    }
+    
+    // traverse tree depth first
+    public func depthOrderIterate(f:BSTNode<Key, Value> -> Void) {
+        let s = Stack<BSTNode<Key, Value>>()
+        s.push(self.root)
+        self.depthOrderIterate(s, f:f)
+    }
+    
+    private func depthOrderIterate(s:Stack<BSTNode<Key, Value>>, f:BSTNode<Key, Value> -> Void) {
+        guard let node = s.pop() else {
+            return
+        }
+        f(node)
+        s.push(node.left)
+        s.push(node.right)
+        self.depthOrderIterate(s, f:f)
     }
     
     // return the maximum tree height

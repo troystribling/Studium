@@ -195,6 +195,13 @@ public class Queue<T> : SequenceType {
     public init() {
     }
     
+    public func enqueue(val:T?) {
+        guard let val = val else {
+            return
+        }
+        self.enqueue(val)
+    }
+    
     public func enqueue(val:T) {
         self.vals.append(val)
     }

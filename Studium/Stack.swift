@@ -24,6 +24,13 @@ public class Stack<T> : SequenceType {
     public init() {
     }
     
+    public func push(val:T?) {
+        guard let val = val else {
+            return
+        }
+        self.push(val)
+    }
+    
     public func push(val:T) {
         self.vals.append(val)
     }

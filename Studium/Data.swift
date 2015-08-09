@@ -21,11 +21,11 @@ public struct Data {
             dateFormatter.dateFormat = "MM/dd/yyyy"
             let data = try! NSString(contentsOfFile:file, encoding:NSUTF8StringEncoding) as String
             let regex = try! NSRegularExpression(pattern:"\\s+", options:[])
-            let rows = split(data.characters){$0=="\n"}.map {slice -> [String] in
+            let rows = data.characters.split{$0=="\n"}.map {slice -> [String] in
                 let row = NSMutableString()
                 row.setString(String(slice))
                 regex.replaceMatchesInString(row, options:[], range:NSMakeRange(0, row.length-1), withTemplate:",")
-                return split(String(row).characters){$0==","}.map(String.init)
+                return String(row).characters.split{$0==","}.map(String.init)
             }
             var trans = [Transaction]()
             for row in rows {
@@ -56,12 +56,12 @@ public struct Data {
         
         public static func load(file:String) -> (Int, [Connection]) {
             let data = try! NSString(contentsOfFile:file, encoding:NSUTF8StringEncoding) as String
-            let rows = split(data.characters){$0=="\n"}
+            let rows = data.characters.split{$0=="\n"}
             if rows.count > 2 {
                 if let nrows = Int(String(rows[0])) {
                     var connections = [Connection]()
                     for row in rows[1..<rows.count] {
-                        let pqs = split(String(row).characters){$0==" "}.map(String.init)
+                        let pqs = String(row).characters.split{$0==" "}.map(String.init)
                         if pqs.count >= 2 {
                             if let p = Int(pqs[0]), q = Int(pqs[1]) {
                                 connections.append(Connection(p:p, q:q))
