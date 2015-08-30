@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -31,6 +31,8 @@
 		05E8CC7D1B48A636008EBA32 /* dickens.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05E8CC7A1B48A636008EBA32 /* dickens.txt */; };
 		05E8CC7E1B48A636008EBA32 /* magna-carta.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05E8CC7B1B48A636008EBA32 /* magna-carta.txt */; };
 		05E8CC7F1B48A636008EBA32 /* tinyBatch.txt in Resources */ = {isa = PBXBuildFile; fileRef = 05E8CC7C1B48A636008EBA32 /* tinyBatch.txt */; };
+		05FB842F1B9209E50079A85F /* MergeSort-1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB842E1B9209E50079A85F /* MergeSort-1.swift */; };
+		05FB84311B9209F80079A85F /* BinarySerach-1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FB84301B9209F80079A85F /* BinarySerach-1.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,9 @@
 		05E8CC7A1B48A636008EBA32 /* dickens.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dickens.txt; sourceTree = "<group>"; };
 		05E8CC7B1B48A636008EBA32 /* magna-carta.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "magna-carta.txt"; sourceTree = "<group>"; };
 		05E8CC7C1B48A636008EBA32 /* tinyBatch.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = tinyBatch.txt; sourceTree = "<group>"; };
+		05FB842E1B9209E50079A85F /* MergeSort-1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MergeSort-1.swift"; sourceTree = "<group>"; };
+		05FB84301B9209F80079A85F /* BinarySerach-1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BinarySerach-1.swift"; sourceTree = "<group>"; };
+		05FB84331B92823E0079A85F /* Misc.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Misc.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +108,7 @@
 		059AE8BC1B37360900D5C16A = {
 			isa = PBXGroup;
 			children = (
+				05FB84331B92823E0079A85F /* Misc.playground */,
 				057930F51B6EEE8F00E73082 /* Bag.playground */,
 				05E067CB1B5F5DF200B52C66 /* BinarySearch.playground */,
 				0570BAAC1B67D2BD0033495F /* BinarySerachTree.playground */,
@@ -129,6 +135,7 @@
 		059AE8C81B37360900D5C16A /* Studium */ = {
 			isa = PBXGroup;
 			children = (
+				05FB842D1B92083F0079A85F /* Exercises */,
 				059AE8CB1B37360900D5C16A /* Studium.h */,
 				059AE8E21B37362500D5C16A /* ArrayTools.swift */,
 				05570E6C1B5193760085F5ED /* Bag.swift */,
@@ -187,6 +194,15 @@
 				05449D591B52F6F900417A0C /* tinyUF.txt */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		05FB842D1B92083F0079A85F /* Exercises */ = {
+			isa = PBXGroup;
+			children = (
+				05FB842E1B9209E50079A85F /* MergeSort-1.swift */,
+				05FB84301B9209F80079A85F /* BinarySerach-1.swift */,
+			);
+			name = Exercises;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,7 +273,7 @@
 				};
 			};
 			buildConfigurationList = 059AE8C01B37360900D5C16A /* Build configuration list for PBXProject "Studium" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -306,8 +322,10 @@
 			files = (
 				05449D541B52DEC200417A0C /* LinkedList.swift in Sources */,
 				054CB4421B486C0600953832 /* Data.swift in Sources */,
+				05FB84311B9209F80079A85F /* BinarySerach-1.swift in Sources */,
 				059AE8E31B37362500D5C16A /* ArrayTools.swift in Sources */,
 				05449D5E1B533C4500417A0C /* SearchTools.swift in Sources */,
+				05FB842F1B9209E50079A85F /* MergeSort-1.swift in Sources */,
 				051E15B01B374112001D2E80 /* Logger.swift in Sources */,
 				056AC7D51B3788B200251679 /* Sort.swift in Sources */,
 				0592DD8A1B4433EF006AA0A5 /* Queue.swift in Sources */,
