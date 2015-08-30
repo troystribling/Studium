@@ -84,6 +84,7 @@
 		05FB842E1B9209E50079A85F /* MergeSort-1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MergeSort-1.swift"; sourceTree = "<group>"; };
 		05FB84301B9209F80079A85F /* BinarySerach-1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "BinarySerach-1.swift"; sourceTree = "<group>"; };
 		05FB84331B92823E0079A85F /* Misc.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Misc.playground; sourceTree = "<group>"; };
+		05FB84341B93728E0079A85F /* MergeSort-Excersise.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "MergeSort-Excersise.playground"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +109,7 @@
 		059AE8BC1B37360900D5C16A = {
 			isa = PBXGroup;
 			children = (
+				05FB84341B93728E0079A85F /* MergeSort-Excersise.playground */,
 				05FB84331B92823E0079A85F /* Misc.playground */,
 				057930F51B6EEE8F00E73082 /* Bag.playground */,
 				05E067CB1B5F5DF200B52C66 /* BinarySearch.playground */,

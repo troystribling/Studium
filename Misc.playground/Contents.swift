@@ -2,8 +2,9 @@
 
 import UIKit
 
+// fizbaz
 func fizbaz() {
-    for i in (1...100) {
+    for i in (1...30) {
         if i % 15 == 0 {
             print("FizBaz")
         } else if i % 5 == 0 {
@@ -16,6 +17,21 @@ func fizbaz() {
 
 fizbaz()
 
+// swap values
+func swap<T>(inout v1:T, inout with:T)  {
+    (with, v1) = (v1, with)
+}
+
+var v1 = 1
+var v2 = 2
+swap(&v1, with:&v2)
+print("v1=\(v1), v2=\(v2)")
 
 
+// count any
+func countAnys(anys:Any...) -> String {
+    return String(anys.count)
+}
+
+countAnys("Hey", 1,2,4,5,7)
 
