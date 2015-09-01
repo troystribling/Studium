@@ -35,3 +35,13 @@ func countAnys(anys:Any...) -> String {
 
 countAnys("Hey", 1,2,4,5,7)
 
+// upto
+func count(from:Int, upTo:Int) {
+    print(from)
+    guard upTo > from else {
+        return
+    }
+    count(from+1, upTo:upTo)
+}
+
+count(1, upTo:5)
