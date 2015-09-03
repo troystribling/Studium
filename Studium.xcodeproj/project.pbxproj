@@ -87,6 +87,7 @@
 		05FB84341B93728E0079A85F /* MergeSort-Excersise.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "MergeSort-Excersise.playground"; sourceTree = "<group>"; };
 		05FB84351B94ACAA0079A85F /* Bytes.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Bytes.playground; sourceTree = "<group>"; };
 		05FB84361B94AD320079A85F /* BinarySearch-Exercises.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = "BinarySearch-Exercises.playground"; sourceTree = "<group>"; };
+		05FB84371B988DF20079A85F /* Strings.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Strings.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +112,7 @@
 		059AE8BC1B37360900D5C16A = {
 			isa = PBXGroup;
 			children = (
+				05FB84371B988DF20079A85F /* Strings.playground */,
 				05FB84361B94AD320079A85F /* BinarySearch-Exercises.playground */,
 				05FB84351B94ACAA0079A85F /* Bytes.playground */,
 				05FB84341B93728E0079A85F /* MergeSort-Excersise.playground */,

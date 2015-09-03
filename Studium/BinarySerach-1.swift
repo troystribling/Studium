@@ -29,3 +29,22 @@ public struct BinarySearch1 {
     }
     
 }
+
+public struct MaxRotatedArray {
+    
+    public static func max<T:Comparable>(vals:[T]) -> T? {
+        return self.max(vals, lo:0, hi:vals.count)
+    }
+    
+    private static func max<T:Comparable>(vals:[T], lo:Int, hi:Int) -> T? {
+        guard lo <= hi else {
+            return nil
+        }
+        let mid = lo + (hi - lo)/2
+        if vals[lo] > vals[mid] {
+            return self.max(vals, lo:lo, hi:mid-1)
+        } else if vals[hi] < vals[mid] {
+            return self.max(vals, lo:mid+1, hi:hi)
+        }
+    }
+}
