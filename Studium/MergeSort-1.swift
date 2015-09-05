@@ -3,7 +3,7 @@
 //  Studium
 //
 //  Created by Troy Stribling on 8/29/15.
-//  Copyright © 2015 gnos.us. All rights reserved.
+//  Copyright (c) 2014 Troy Stribling. The MIT License (MIT).
 //
 
 import Foundation

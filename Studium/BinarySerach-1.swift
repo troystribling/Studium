@@ -3,7 +3,7 @@
 //  Studium
 //
 //  Created by Troy Stribling on 8/29/15.
-//  Copyright © 2015 gnos.us. All rights reserved.
+//  Copyright (c) 2014 Troy Stribling. The MIT License (MIT).
 //
 
 import Foundation
@@ -32,19 +32,22 @@ public struct BinarySearch1 {
 
 public struct MaxRotatedArray {
     
-    public static func max<T:Comparable>(vals:[T]) -> T? {
-        return self.max(vals, lo:0, hi:vals.count)
+    public static func max<T:Comparable>(vals:[T]) -> T {
+        return self.max(vals, lo:0, hi:vals.count-1)
     }
     
-    private static func max<T:Comparable>(vals:[T], lo:Int, hi:Int) -> T? {
-        guard lo <= hi else {
-            return nil
-        }
+    private static func max<T:Comparable>(vals:[T], lo:Int, hi:Int) -> T {
         let mid = lo + (hi - lo)/2
+        print("lo=\(lo), hi=\(hi), mid=\(mid)")
         if vals[lo] > vals[mid] {
-            return self.max(vals, lo:lo, hi:mid-1)
+            print("left side is misordered: vals[lo]=\(vals[lo]), vals[mid]=\(vals[mid])")
+            return self.max(vals, lo:lo, hi:mid)
         } else if vals[hi] < vals[mid] {
-            return self.max(vals, lo:mid+1, hi:hi)
+            print("right side is misordered: vals[mid]=\(vals[mid]), vals[hi]=\(vals[hi])")
+            return self.max(vals, lo:mid, hi:hi)
+        } else {
+            print("max found: vals[lo]=\(vals[lo]), vals[mid]=\(vals[mid]), vals[hi]=\(vals[hi])")
+            return vals[mid]
         }
     }
 }
