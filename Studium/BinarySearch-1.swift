@@ -1,5 +1,5 @@
 //
-//  BinarySerach-1.swift
+//  BinarySearch-1.swift
 //  Studium
 //
 //  Created by Troy Stribling on 8/29/15.
@@ -37,6 +37,14 @@ public struct MaxRotatedArray {
     }
     
     private static func max<T:Comparable>(vals:[T], lo:Int, hi:Int) -> T {
+        print("hi-lo=\(hi-lo)")
+        guard hi - lo > 1 else {
+            if vals[lo] < vals[hi] {
+                return vals[hi]
+            } else {
+                return vals[lo]
+            }
+        }
         let mid = lo + (hi - lo)/2
         print("lo=\(lo), hi=\(hi), mid=\(mid)")
         if vals[lo] > vals[mid] {
@@ -46,8 +54,8 @@ public struct MaxRotatedArray {
             print("right side is misordered: vals[mid]=\(vals[mid]), vals[hi]=\(vals[hi])")
             return self.max(vals, lo:mid, hi:hi)
         } else {
-            print("max found: vals[lo]=\(vals[lo]), vals[mid]=\(vals[mid]), vals[hi]=\(vals[hi])")
-            return vals[mid]
+            print("array is ordered max found: vals[lo]=\(vals[lo]), vals[mid]=\(vals[mid]), vals[hi]=\(vals[hi])")
+            return vals[hi]
         }
     }
 }
